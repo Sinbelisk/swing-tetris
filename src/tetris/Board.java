@@ -8,8 +8,10 @@ import java.awt.*;
 public class Board extends JPanel {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
+    private static final int ROWS = 20;
+    private static final int COLUMNS = 10;
     private static final int SIZE = 25;
-    public final TetrisGrid game = new TetrisGrid();
+    public final TetrisGrid game = new TetrisGrid(ROWS, COLUMNS);
     public Board() {
     }
     public static void main(String[] args) {

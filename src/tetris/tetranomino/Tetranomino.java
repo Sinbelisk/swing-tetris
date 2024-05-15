@@ -1,33 +1,23 @@
 package tetris.tetranomino;
 
+import tetris.TilePosition;
+
+import java.util.ArrayList;
+
 public abstract class Tetranomino {
-    private int offsetX;
-    private int offsetY;
-    int[][] tetranomino;
-    int color;
+    protected TilePosition startingPosition;
+    protected TilePosition[][] Blocks;
+    protected int rotationState;
+    protected TilePosition currentPosition;
 
-    public Tetranomino(boolean big){
-        if (big) tetranomino = new int[4][4];
-        else tetranomino = new int[3][3];
+    public Tetranomino(int startingRow, int startingColumn){
+        startingPosition = new TilePosition(startingRow, startingColumn);
+        currentPosition = new TilePosition(startingPosition.getRow(), startingPosition.getColumn());
     }
 
-    public int[][] getTetranomino(){
-        return tetranomino;
+    public void move(int rows, int columns){
+        currentPosition.setRow(rows + currentPosition.getRow());
+        currentPosition.setColumn(columns + currentPosition.getColumn());
     }
 
-    public int getColorAt(int row, int column){
-        return tetranomino[row][column];
-    }
-
-    protected void setColor(){
-        for (int i = 0; i < tetranomino.length; i++) {
-            for (int j = 0; j < tetranomino[i].length; j++) {
-                tetranomino[i][j] = 0;
-            }
-        }
-    }
-
-    public int getColor() {
-        return color;
-    }
 }
