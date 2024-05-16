@@ -16,7 +16,7 @@ Voy a utilizar este archivo para documentar los mecanismos de como implementar e
   - [ ] Metodos para mover el tetranomino de posicion, haciendo comprobaciones para que no se pueda salir del board; esto no etoy seguro si hacerlo en un archivo a parte que gestione todos los movimientos e inputs del usuario o incluirlo en la clase principal del tetranomino.
   - [ ] Implementar el SRS; Es el sistema oficial que usa  tetris para los movimientos, es considerablemente mas "facil" que la alternativa de calcualr la rotacion de la matriz
 
-## Ideas y movidas
-- Para la rotacion de piezas quiero implementar SRS, el algoritmo oficial en los juegos de tetris para rotar las piezas y comprobar que es posible rotar la pieza.
----
-- Intentar averiguar como dibujar de una forma mas sensata los datos del grid y los tetranomnos en pantalla.
+## Los Tetrominos
+- Las piezas tendran "estados" que son basicamente matrices con sus diferentes estados de rotacion
+- Cada pieza tiene que tener variables que definan su ubicacion inicial al ser creadas o reinciadas (para reutilizar recursos), cada pieza empieza en el estado "0" y dependiendo del tipo tienen un tamaño que debe de ser ajustado.
+- Cada pieza tiene dos variables que indican su posicion X e Y en el board, 

@@ -1,6 +1,6 @@
-package tetris;
+package tetris.gui;
 
-import tetris.tetranomino.Tetranomino;
+import tetris.gameLogic.TetrisGrid;
 
 import javax.swing.*;
 import java.awt.*;

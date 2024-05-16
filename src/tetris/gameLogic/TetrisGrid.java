@@ -1,4 +1,4 @@
-package tetris;
+package tetris.gameLogic;
 
 public class TetrisGrid {
     private int[][] board;

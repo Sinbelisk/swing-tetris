@@ -1,4 +1,4 @@
-package tetris;
+package tetris.gameLogic;
 
 public class TilePosition {
     // This class creates positions for the blocks that composes a Tetranomino, making it easier to manage.
