@@ -8,7 +8,7 @@ public class SPiece extends Tetromino{
         this.currentShape = new int[][] {
                 {0, 1, 1},
                 {1, 1, 0},
-                {1, 0, 0},
+                {0, 0, 0},
         };
 
         rotations = MatrixOperations.generateRotations(currentShape);

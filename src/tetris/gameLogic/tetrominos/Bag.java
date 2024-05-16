@@ -9,8 +9,15 @@ public class Bag {
     int bagIndex;
     public Bag(){
         bagIndex = 0;
+
         pieces.add(new IPiece());
         pieces.add(new LPiece());
+        pieces.add(new ILPiece());
+        pieces.add(new QPiece());
+        pieces.add(new TPiece());
+        pieces.add(new ZPiece());
+        pieces.add(new SPiece());
+
         currentPiece = getNewPiece();
     }
     public void randomize(){
