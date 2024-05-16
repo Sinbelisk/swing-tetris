@@ -6,14 +6,14 @@ public class MatrixOperations {
         int size = matrix.length;
         int[][] rotatedMatrix = new int[size][size];
 
-        // Step 1: rows to columns
+        // Step 1: rows to columns (transpose)
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 rotatedMatrix[j][i] = matrix[i][j];
             }
         }
 
-        // step 2: inversion
+        // step 2: reverse
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size / 2; j++) {
                 int temp = rotatedMatrix[i][j];

@@ -37,6 +37,10 @@ public class PieceControl {
             case 1 -> Color.CYAN;
             case 2 -> Color.orange;
             case 3 -> Color.magenta;
+            case 4 -> Color.red;
+            case 5 -> Color.green;
+            case 6 -> Color.BLUE;
+            case 7 -> Color.yellow;
 
             default -> throw new IllegalStateException("Unexpected value: " + pieceID);
         };
