@@ -1,3 +1,5 @@
+package tetris;
+
 import tetris.gui.Board;
 
 import javax.swing.*;
