@@ -7,8 +7,8 @@ public class ZPiece extends Tetromino{
         super(5, -2, 4);
         this.currentShape = new int[][] {
                 {1, 1, 0},
-                {0, 1, 0},
                 {0, 1, 1},
+                {0, 0, 0},
         };
 
         rotations = MatrixOperations.generateRotations(currentShape);
