@@ -1,13 +1,11 @@
 package tetris.gameLogic.tetrominos;
 public abstract class Tetromino {
     protected int pieceID;
-    protected int startingX;
-    protected int startingY;
+    protected int startingX, startingY;
     protected int[][] currentShape;
     protected int[][][] rotations; // AKA kicktable.
     protected int rotationIndex;
-    protected int posX;
-    protected int posY;
+    protected int posX, posY;
     public Tetromino(int startingX, int startingY, int pieceID){
         this.pieceID = pieceID;
         this.startingX = startingX;
@@ -17,7 +15,10 @@ public abstract class Tetromino {
         posX = this.startingX;
         posY = this.startingY;
     }
-
+    public void rotateClockWise(){
+        rotationIndex = (rotationIndex +1) % 4;
+        currentShape = rotations[rotationIndex];
+    }
     public void move(int x, int y){
         this.posX += x;
         this.posY += y;
@@ -37,6 +38,7 @@ public abstract class Tetromino {
     public void reset(){
         this.posX = startingX;
         this.posY = startingY;
+        this.currentShape = rotations[0];
     }
 
     public int getPieceID() {

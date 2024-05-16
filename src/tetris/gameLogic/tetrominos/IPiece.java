@@ -1,7 +1,7 @@
 package tetris.gameLogic.tetrominos;
 public class IPiece extends Tetromino {
     public IPiece() {
-        super(0, 5, 1);
+        super(5, -2, 1);
         // shape 0
        this.rotations = new int[][][] {
                {
@@ -11,10 +11,10 @@ public class IPiece extends Tetromino {
                        {0, 0, 0, 0},
                },
                {
-                       {0, 0, 0, 1},
-                       {0, 0, 0, 1},
-                       {0, 0, 0, 1},
-                       {0, 0, 0, 1},
+                       {0, 0, 1, 0},
+                       {0, 0, 1, 0},
+                       {0, 0, 1, 0},
+                       {0, 0, 1, 0},
                },
                {
                        {0, 0, 0, 0},
@@ -23,14 +23,12 @@ public class IPiece extends Tetromino {
                        {0, 0, 0, 0},
                },
                {
-                       {1, 0, 0, 0},
-                       {1, 0, 0, 0},
-                       {1, 0, 0, 0},
-                       {1, 0, 0, 0},
+                       {0, 1, 0, 0},
+                       {0, 1, 0, 0},
+                       {0, 1, 0, 0},
+                       {0, 1, 0, 0},
                }
        };
        this.currentShape = rotations[rotationIndex];
-
-
     }
 }
