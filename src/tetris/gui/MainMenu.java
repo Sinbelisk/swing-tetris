@@ -1,15 +1,30 @@
 package tetris.gui;
 
+import tetris.Main;
+import tetris.gui.panel.InfoLayer;
 import tetris.gui.panel.MainLayer;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainMenu extends JFrame {
     public static final String APP_NAME = "Tetris With Swing";
     public static final int MAIN_MENU_WIDTH = 600;
     public static final int MAIN_MENU_LENGTH = 800;
+    private static final String MAIN_PANEL = "MainPanel";
+    private static final String INFO_PANEL = "InfoPanel";
+    private static CardLayout cardLayout;
+    private static JPanel mainContainer;
     public MainMenu() {
         init();
+    }
+
+    public static void showMainLayer() {
+        cardLayout.show(mainContainer, MAIN_PANEL);
+    }
+
+    public static void showInfoPanel() {
+        cardLayout.show(mainContainer, INFO_PANEL);
     }
 
     private void init() {
@@ -18,9 +33,17 @@ public class MainMenu extends JFrame {
         setSize(MAIN_MENU_WIDTH, MAIN_MENU_LENGTH);
         setLocationRelativeTo(null);
 
+        mainContainer = new JPanel();
+        cardLayout = new CardLayout();
+        mainContainer.setLayout(cardLayout);
 
-        MainLayer mainLayer = new MainLayer();
-        add(mainLayer);
+        MainLayer mainPanel = new MainLayer();
+        InfoLayer infoPanel = new InfoLayer();
+
+        mainContainer.add(mainPanel, MAIN_PANEL);
+        mainContainer.add(infoPanel, INFO_PANEL);
+
+        add(mainContainer);
 
         setVisible(true);
     }

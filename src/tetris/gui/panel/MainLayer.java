@@ -1,7 +1,10 @@
 package tetris.gui.panel;
 
+import tetris.gui.MainMenu;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class MainLayer extends JPanel {
     public static final String START_TEXT = "Start";
@@ -15,6 +18,7 @@ public class MainLayer extends JPanel {
         init();
     }
 
+
     private void init() {
         setLayout(new BorderLayout());
 
@@ -24,9 +28,9 @@ public class MainLayer extends JPanel {
         JLabel label = new JLabel("Tetris");
         panel.add(label);
 
-        start = new JButton(START_TEXT);
-        controls = new JButton(CONTROLS_TEXT);
-        quit = new JButton(QUIT_TEXT);
+        start = new JButton(new MainMenuHandler(START_TEXT));
+        controls = new JButton(new MainMenuHandler(CONTROLS_TEXT));
+        quit = new JButton(new MainMenuHandler(QUIT_TEXT));
 
         Dimension buttonSize = new Dimension(200, 50);
         start.setPreferredSize(buttonSize);
@@ -54,5 +58,22 @@ public class MainLayer extends JPanel {
         add(panel, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public static class MainMenuHandler extends AbstractAction {
+        public MainMenuHandler(String name) {
+            putValue(AbstractAction.NAME, name);
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (getValue(AbstractAction.NAME) == "Start") {
+
+            } else if (getValue(AbstractAction.NAME) == "Controls") {
+                MainMenu.showInfoPanel();
+
+            } else if (getValue(AbstractAction.NAME) == "Quit") {
+                System.exit(0);
+            }
+        }
     }
 }
