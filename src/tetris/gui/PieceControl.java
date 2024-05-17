@@ -12,6 +12,8 @@ public class PieceControl {
         this.grid = grid;
     }
     private static final int CELL_SIZE = 25;
+    private int dropCount = 0;
+    private final int INTERVAL = 60;
 
     public void drawPiece(Graphics g, Tetromino piece ) {
         int[][] shape = piece.getCurrentShape();
@@ -65,6 +67,14 @@ public class PieceControl {
 
             default -> Color.BLACK;
         };
+    }
+
+    public void drop(Tetromino currentPiece){
+        dropCount++;
+        if(dropCount == INTERVAL){
+            currentPiece.move(0, 1);
+            dropCount = 0;
+        }
     }
 
 }

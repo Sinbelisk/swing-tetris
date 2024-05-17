@@ -9,15 +9,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board extends JPanel implements KeyListener , Runnable{
+public class Board extends JPanel implements KeyListener, Runnable {
     private static final int ROWS = 20;
     private static final int COLUMNS = 10;
     private static final int CELL_SIZE = 25;
+    Thread gameLoop;
     public final TetrisGrid GAME = new TetrisGrid(ROWS, COLUMNS);
     public final Bag pieceBag = new Bag();
     public Tetromino I = pieceBag.getCurrentPiece();
     PieceControl drawTest = new PieceControl(GAME);
     public Board() {
+        setLayout(null);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -27,6 +29,10 @@ public class Board extends JPanel implements KeyListener , Runnable{
         drawTest.drawPiece(g, I);
 
         drawGrid(g);
+    }
+
+    private void update(){
+        drawTest.drop(I);
     }
     private void drawBackground(Graphics g) {
         g.setColor(Color.BLACK);
@@ -92,5 +98,23 @@ public class Board extends JPanel implements KeyListener , Runnable{
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+    @Override
+    public void run() {
+        //The game 60 FPS.
+        while(gameLoop != null){
+            try {
+                Thread.sleep(1000/60);
+                update();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            repaint();
+        }
+    }
+
+    public void startGameLoop(){
+        gameLoop = new Thread(this);
+        gameLoop.start();
     }
 }
