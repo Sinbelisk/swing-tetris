@@ -1,12 +1,16 @@
-package tetris.gameLogic;
+package tetris.gui;
 
+import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.tetrominos.Tetromino;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PieceControl {
-
+    private TetrisGrid grid;
+    public PieceControl(TetrisGrid grid){
+        this.grid = grid;
+    }
     private static final int CELL_SIZE = 25;
 
     public void drawPiece(Graphics g, Tetromino piece ) {
@@ -31,8 +35,25 @@ public class PieceControl {
             }
         }
     }
+    public void placePiece(Tetromino piece, JPanel currentPanel) {
+        // Repaint the panel to clear the previous state
+        currentPanel.repaint();
 
-    private Color getPieceColor(int pieceID){
+        int[][] currentShape = piece.getCurrentShape();
+        int x = piece.getPosX();
+        int y = piece.getPosY();
+
+        for (int i = 0; i < currentShape.length; i++) {
+            for (int j = 0; j < currentShape[i].length; j++) {
+                if (currentShape[i][j] != 0) {
+                    // Correct the placement logic
+                    grid.setCell(y + i, x + j, piece.getPieceID());
+                }
+            }
+        }
+        piece.reset();
+    }
+    public Color getPieceColor(int pieceID){
         return switch (pieceID){
             case 1 -> Color.CYAN;
             case 2 -> Color.orange;
@@ -42,7 +63,7 @@ public class PieceControl {
             case 6 -> Color.BLUE;
             case 7 -> Color.yellow;
 
-            default -> throw new IllegalStateException("Unexpected value: " + pieceID);
+            default -> Color.BLACK;
         };
     }
 

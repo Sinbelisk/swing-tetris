@@ -61,4 +61,14 @@ public class TetrisGrid {
             }
         }
     }
+    public void printDebug(){
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(board[i][j] + "   ");
+            }
+            System.out.println();
+        }
+    }
 }
