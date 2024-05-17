@@ -1,6 +1,6 @@
 package tetris;
 
-import tetris.swing.MainMenu;
+import tetris.gui.MainMenu;
 
 import javax.swing.*;
 

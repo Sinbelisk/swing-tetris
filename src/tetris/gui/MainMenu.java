@@ -1,9 +1,8 @@
-package tetris.swing;
+package tetris.gui;
 
-import tetris.swing.panel.MainLayer;
+import tetris.gui.panel.MainLayer;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainMenu extends JFrame {
     public static final String APP_NAME = "Tetris With Swing";

@@ -1,7 +1,4 @@
-package tetris.swing.panel;
-
-import tetris.Main;
-import tetris.swing.MainMenu;
+package tetris.gui.panel;
 
 import javax.swing.*;
 import java.awt.*;
