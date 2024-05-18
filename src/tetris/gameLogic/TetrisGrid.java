@@ -1,5 +1,7 @@
 package tetris.gameLogic;
 
+import java.util.Random;
+
 public class TetrisGrid {
     private int[][] board;
     private int rows;
@@ -45,12 +47,12 @@ public class TetrisGrid {
     }
     public void moveRowDown(int row, int numberOfRows){
         for (int i = 0; i < columns; i++) {
-            board[row + numberOfRows][i] = board[row][columns];
+            board[row + numberOfRows][i] = board[row][i];
         }
         clearRow(row);
     }
 
-    public void clearAndMoveAllRows(){ // checks each row individually until a row is empty
+    public int clearAndMoveAllRows(){ // checks each row individually until a row is empty
         int clearedRows = 0;
         for (int i = rows -1; i >= 0; i--) {
             if(checkIfRowIsFull(i)){
@@ -60,6 +62,7 @@ public class TetrisGrid {
                 moveRowDown(i, clearedRows);
             }
         }
+        return clearedRows;
     }
     public void printDebug(){
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -69,6 +72,14 @@ public class TetrisGrid {
                 System.out.print(board[i][j] + "   ");
             }
             System.out.println();
+        }
+    }
+    public void fillRandomDebug(){
+        Random random = new Random();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = random.nextInt(0, 7);
+            }
         }
     }
 
