@@ -1,7 +1,6 @@
 package tetris.gui;
 
 import tetris.gameLogic.TetrisGrid;
-import tetris.gui.events.KeyHandler;
 
 import java.awt.*;
 

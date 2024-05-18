@@ -17,15 +17,30 @@ public abstract class Tetromino {
         posX = this.startingX;
         posY = this.startingY;
     }
-
+    public int[][] getNextRotation(){
+        int localRotation = rotationIndex+1;
+        return rotations[localRotation];
+    }
     public void rotateClockWise() {
         rotationIndex = (rotationIndex + 1) % 4;
+        currentShape = rotations[rotationIndex];
+    }
+    public void rotateCounterClockWise(){
+        if(rotationIndex == 0){
+            rotationIndex = 3;
+        }else{
+            rotationIndex--;
+        }
         currentShape = rotations[rotationIndex];
     }
 
     public void move(int x, int y) {
         this.posX += x;
         this.posY += y;
+    }
+    public void undoLastMove(int x, int y){
+        this.posX -= x;
+        this.posY -= y;
     }
 
     public int[][] getCurrentShape() {
@@ -45,7 +60,6 @@ public abstract class Tetromino {
         this.posY = startingY;
         this.currentShape = rotations[0];
     }
-
     public int getPieceID() {
         return pieceID;
     }
@@ -56,5 +70,4 @@ public abstract class Tetromino {
         this.posX = 0;
         this.posY = 0;
     }
-
 }

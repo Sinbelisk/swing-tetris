@@ -1,20 +1,12 @@
-package tetris.gui.events;
+package tetris.gui.events.KeyEvents;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
-
 public class KeyHandler implements KeyListener {
+    // Esta clase es para gestionar eventos de teclado.
     private static final Map<Integer, Boolean> keyStateMap = new HashMap<>();
-
-    private KeyHandler(){
-
-    }
-
-    public static KeyHandler getInstance() {
-        return instance;
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {

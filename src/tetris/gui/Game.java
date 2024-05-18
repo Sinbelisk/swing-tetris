@@ -1,7 +1,7 @@
 package tetris.gui;
 
 import tetris.Updatable;
-import tetris.gui.events.KeyHandler;
+import tetris.gui.events.KeyEvents.KeyHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +9,7 @@ import java.awt.*;
 public class Game extends JPanel implements Runnable, Updatable {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
+    public static final int DRAW_INTERVAL = 1000/60;
     private Thread gameLoop;
     private GameManager gameManager = new GameManager();
     public Game(){
@@ -34,7 +35,7 @@ public class Game extends JPanel implements Runnable, Updatable {
 
         while (gameLoop != null) {
             try {
-                Thread.sleep(1000/60);
+                Thread.sleep(DRAW_INTERVAL);
                 update();
                 repaint();
             } catch (InterruptedException e) {
