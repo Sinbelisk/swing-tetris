@@ -37,4 +37,8 @@ public class Bag {
     public Tetromino getCurrentPiece() {
         return currentPiece;
     }
+    public void debugPlaceAtZero(){
+        this.currentPiece.startingX = 0;
+        this.currentPiece.startingY = 0;
+    }
 }

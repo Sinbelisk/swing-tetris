@@ -49,5 +49,12 @@ public abstract class Tetromino {
     public int getPieceID() {
         return pieceID;
     }
+    public void debugPlaceAtZero(){
+        this.startingX = 0;
+        this.startingY = 0;
+
+        this.posX = 0;
+        this.posY = 0;
+    }
 
 }
