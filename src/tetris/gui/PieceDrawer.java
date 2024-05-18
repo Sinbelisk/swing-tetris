@@ -8,6 +8,7 @@ import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -41,6 +42,7 @@ public class PieceDrawer implements Drawable, Updatable {
 
     @Override
     public void update() {
+        debugInput();
         if(dropTimer.hasElapsed() && !KeyHandler.isKeyPressed(KeyEvent.VK_S)){
             drop();
         }
@@ -52,13 +54,15 @@ public class PieceDrawer implements Drawable, Updatable {
         if (moveTimer.hasElapsed()) {
             checkForInput();
         }
-
     }
 
     private void drop() {
         if(canMove(currentPiece, 0, 1)) currentPiece.move(0, 1);
     }
 
+    private void debugInput(){
+        if(KeyHandler.isKeyPressed(KeyEvent.VK_ENTER)) GRID.clearAndMoveAllRows();
+    }
     private void checkForInput() {
         // Value that represents how much the piece moves in a direccion on the board.
         int deltaX = 0;

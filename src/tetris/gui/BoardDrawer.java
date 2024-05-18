@@ -1,14 +1,19 @@
 package tetris.gui;
 
+import tetris.Updatable;
 import tetris.gameLogic.TetrisGrid;
 
 import java.awt.*;
 
-public class BoardDrawer{
+public class BoardDrawer implements Updatable {
     private static final int CELL_SIZE = 25;
     public final TetrisGrid GAME_GRID;
     public BoardDrawer(TetrisGrid gameGrid) {
         this.GAME_GRID = gameGrid;
+    }
+    @Override
+    public void update() {
+        GAME_GRID.clearAndMoveAllRows();
     }
     public void drawGrid(Graphics2D g2d) {
         g2d.setColor(Color.BLACK);
