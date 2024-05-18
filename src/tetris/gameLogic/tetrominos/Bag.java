@@ -29,7 +29,7 @@ public class Bag {
         currentPiece = pieces.get(bagIndex);
         currentPiece.reset();
 
-        bagIndex = (bagIndex +1) % 2;
+        bagIndex = (bagIndex +1) % pieces.size();
 
         return currentPiece;
     }
