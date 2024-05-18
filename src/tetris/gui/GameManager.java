@@ -18,7 +18,6 @@ public class GameManager implements Updatable, Drawable {
     private final PieceDrawer PIECE_DRAWER = new PieceDrawer(GRID, BAG, new Timer(BASE_MOVE_DELAY));
 
     public GameManager(){
-        BAG.getCurrentPiece().debugPlaceAtZero();
     }
 
     public static Color getPieceColor(int pieceID) {
