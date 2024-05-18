@@ -4,7 +4,7 @@ import tetris.MatrixOperations;
 
 public class LPiece extends Tetromino{
     public LPiece() {
-        super(5, -2, 2);
+        super(0, 0, 2);
         this.currentShape = new int[][] {
                 {0, 0, 1},
                 {1, 1, 1},
