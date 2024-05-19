@@ -1,4 +1,4 @@
-package tetris;
+package tetris.util.interfaces;
 
 import java.awt.*;
 public interface Drawable {

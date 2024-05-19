@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.gui.Game;
 import tetris.gui.MainMenu;
 
 import javax.swing.*;
@@ -76,10 +77,9 @@ public class MainLayer extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (getValue(AbstractAction.NAME) == START_TEXT) {
-
+                MainMenu.showGame();
             } else if (getValue(AbstractAction.NAME) == CONTROLS_TEXT) {
                 MainMenu.showInfoPanel();
-
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {
 
             } else if (getValue(AbstractAction.NAME) == QUIT_TEXT) {

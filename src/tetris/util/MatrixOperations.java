@@ -1,7 +1,6 @@
-package tetris;
+package tetris.util;
 
 public class MatrixOperations {
-
     public static int[][] rotateMatrix(int[][] matrix){
         int size = matrix.length;
         int[][] rotatedMatrix = new int[size][size];

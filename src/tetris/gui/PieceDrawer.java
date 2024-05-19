@@ -1,14 +1,13 @@
 package tetris.gui;
 
-import tetris.Drawable;
-import tetris.Updatable;
+import tetris.util.interfaces.Drawable;
+import tetris.util.interfaces.Updatable;
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 

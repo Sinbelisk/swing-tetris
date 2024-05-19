@@ -1,7 +1,7 @@
 package tetris.gui;
 
-import tetris.Drawable;
-import tetris.Updatable;
+import tetris.util.interfaces.Drawable;
+import tetris.util.interfaces.Updatable;
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
@@ -17,9 +17,7 @@ public class GameManager implements Updatable, Drawable {
     private final BoardDrawer BOARD_DRAWER = new BoardDrawer(GRID);
     private final PieceDrawer PIECE_DRAWER = new PieceDrawer(GRID, BAG, new Timer(BASE_MOVE_DELAY));
 
-    public GameManager(){
-
-    }
+    public GameManager() {}
 
     public static Color getPieceColor(int pieceID) {
         return switch (pieceID) {
@@ -30,10 +28,10 @@ public class GameManager implements Updatable, Drawable {
             case 5 -> Color.green;
             case 6 -> Color.BLUE;
             case 7 -> Color.yellow;
-
             default -> Color.BLACK;
         };
     }
+
     @Override
     public void update() {
         BOARD_DRAWER.update();

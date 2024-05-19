@@ -1,6 +1,6 @@
 package tetris.gameLogic.tetrominos;
 
-import tetris.MatrixOperations;
+import tetris.util.MatrixOperations;
 
 public class LPiece extends Tetromino{
     public LPiece() {
