@@ -1,6 +1,5 @@
 package tetris.gui.panel;
 
-import tetris.gui.BoardDrawer;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 
@@ -15,11 +14,20 @@ public class GamePanel extends JPanel {
     private void init() {
         // layout border layout
         setLayout(new BorderLayout());
+        setFocusable(false);
+        Game game = new Game();
+        add(game, BorderLayout.CENTER);
+        setVisible(true);
+
+        game.startGameLoop();
+        //He puesto el Game game = new Game() aqui para probar si era el initGame() de MainMenu el problema pero no, el
+        //el problema pasa en los dos
     }
+
     public static void main(String[] args) {
+        //Este si funcina
         JFrame frame = new JFrame();
 
-        frame.setFocusable(false);
         Game game = new Game();
         GamePanel gamePanel = new GamePanel();
 
@@ -31,8 +39,6 @@ public class GamePanel extends JPanel {
         frame.setFocusable(false);
         frame.setVisible(true);
 
-        // Este metodo inicia el game loop, y me acabo  de dar cuenta que tengo que implementar uno para pausarlo o detenerlo xxdxdxdxdxdxdxdxdxdx
-        // Es posible que el thread the de problemas con la interfaces, la implementation que he hecho es muy peruana.
-        //game.startGameLoop();
+        game.startGameLoop();
     }
 }

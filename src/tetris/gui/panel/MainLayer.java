@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.Main;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MainLayer extends JPanel {
+    private final Image background = MainMenu.BACKGROUND.getImage();
     public static final String START_TEXT = "Start";
     public static final String CONTROLS_TEXT = "Controls";
     public static final String SCORES_TEXT = "Scores";
@@ -78,6 +80,7 @@ public class MainLayer extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if (getValue(AbstractAction.NAME) == START_TEXT) {
                 MainMenu.showGame();
+                //MainMenu.initGame();
             } else if (getValue(AbstractAction.NAME) == CONTROLS_TEXT) {
                 MainMenu.showInfoPanel();
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {

@@ -1,23 +1,18 @@
-package tetris.gui;
+package tetris.gui.load;
 
 import javax.sound.sampled.*;
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class BackgroundMusic {
     private Clip clip;
 
-    public BackgroundMusic() {
+    public BackgroundMusic(String song) {
         try {
-            File file = new File("resources/backgroundMusic.wav");
-
-            URL url = getClass().getClassLoader().getResource("resources/backgroundMusic.wav");
+            URL url = getClass().getClassLoader().getResource(song);
 
             if (url == null) {
-                throw new RuntimeException("Archivo de música no encontrado");
+                throw new RuntimeException("Soundtrack doesn't found!");
             }
 
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
