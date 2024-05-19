@@ -1,6 +1,6 @@
 package tetris.gui;
 
-import tetris.Updatable;
+import tetris.util.interfaces.Updatable;
 import tetris.gameLogic.TetrisGrid;
 
 import java.awt.*;
