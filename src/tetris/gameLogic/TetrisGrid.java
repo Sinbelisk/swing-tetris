@@ -52,7 +52,7 @@ public class TetrisGrid {
         clearRow(row);
     }
 
-    public int clearAndMoveAllRows(){ // checks each row individually until a row is empty
+    public int clearAndMoveAllRows(){ // checks each row individually until a row is empty and returns the number of rows deleted
         int clearedRows = 0;
         for (int i = rows -1; i >= 0; i--) {
             if(checkIfRowIsFull(i)){
