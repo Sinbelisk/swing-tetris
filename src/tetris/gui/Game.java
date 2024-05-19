@@ -32,19 +32,6 @@ public class Game extends JPanel implements Runnable, Updatable {
         game.startGameLoop();
     }
 
-    public static void playGame() {
-        JFrame frame = new JFrame();
-        frame.setFocusable(false);
-        Game game = new Game();
-        frame.setSize(WIDTH, HEIGHT);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.add(game);
-        frame.setFocusable(false);
-        frame.setVisible(true);
-        game.startGameLoop();
-    }
-
     @Override
     public void run() {
         while (gameLoop != null) {

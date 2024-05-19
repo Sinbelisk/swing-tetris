@@ -1,11 +1,11 @@
 package tetris.gameLogic.tetrominos;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Bag {
-    Tetromino currentPiece;
-    ArrayList<Tetromino> pieces = new ArrayList<>();
+    private Tetromino currentPiece;
+    private final ArrayList<Tetromino> pieces = new ArrayList<>();
+    private final Queue<Tetromino> bagQueue = new LinkedList<>();
     int bagIndex;
     public Bag(){
         bagIndex = 0;
@@ -25,7 +25,10 @@ public class Bag {
     }
 
     public Tetromino getNewPiece(){
-        if(bagIndex == 0) randomize();
+        if(bagIndex == 0) {
+            randomize();
+            resetQueue();
+        }
         currentPiece = pieces.get(bagIndex);
         currentPiece.reset();
 
@@ -34,11 +37,20 @@ public class Bag {
         return currentPiece;
     }
 
+    private void resetQueue() {
+        bagQueue.clear();
+        bagQueue.addAll(pieces);
+    }
+
     public Tetromino getCurrentPiece() {
         return currentPiece;
     }
     public void debugPlaceAtZero(){
         this.currentPiece.startingX = 0;
         this.currentPiece.startingY = 0;
+    }
+
+    public Queue<Tetromino> getBagQueue() {
+        return bagQueue;
     }
 }
