@@ -16,7 +16,6 @@ public class Game extends JPanel implements Runnable, Updatable {
     public Game() {
         this.addKeyListener(new KeyHandler());
         setFocusable(true);
-        requestFocus();
     }
 
     @Override
@@ -39,6 +38,9 @@ public class Game extends JPanel implements Runnable, Updatable {
 
     @Override
     public void update() {
+        if (!hasFocus()){
+            requestFocus();
+        }
         gameManager.update();
     }
 
