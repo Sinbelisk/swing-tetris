@@ -1,7 +1,5 @@
 package tetris.gui;
 
-import tetris.gui.loadResources.InitSoundtrack;
-import tetris.gui.loadResources.LoadSoundtrack;
 import tetris.gui.panel.GamePanel;
 import tetris.gui.panel.InfoLayer;
 import tetris.gui.panel.MainLayer;
@@ -11,7 +9,7 @@ import java.awt.*;
 
 public class MainMenu extends JFrame {
     public static final String APP_NAME = "Tetris With Swing";
-    private static final ImageIcon ICON = new ImageIcon("resources/icon.png");
+    private static final ImageIcon ICON = new ImageIcon("resources/images/icon.png");
     public static final int MAIN_MENU_WIDTH = 265;
     public static final int MAIN_MENU_LENGTH = 535;
     private static final String MAIN_PANEL = "MainPanel";

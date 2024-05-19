@@ -16,7 +16,6 @@ public class GamePanel extends JPanel {
     }
 
     public static void main(String[] args) {
-        //Este si funcina
         JFrame frame = new JFrame();
 
         Game game = new Game();

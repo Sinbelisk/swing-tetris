@@ -2,15 +2,13 @@ package tetris.gui.panel;
 
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitSoundtrack;
-import tetris.gui.loadResources.LoadImage;
-import tetris.gui.loadResources.LoadSoundtrack;
+import tetris.gui.loadResources.InitImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MainLayer extends JPanel {
-    private final Image background = LoadImage.BACKGROUND.getImage();
     public static final String START_TEXT = "Start";
     public static final String CONTROLS_TEXT = "Controls";
     public static final String SCORES_TEXT = "Scores";
@@ -29,6 +27,7 @@ public class MainLayer extends JPanel {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
+        panel.setOpaque(false);
 
         JLabel label = new JLabel("Tetris With Swing");
         panel.add(label);
@@ -76,6 +75,7 @@ public class MainLayer extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        Image background = InitImage.BACKGROUND.getImage();
         super.paintComponent(g);
         if (background != null) {
             g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
