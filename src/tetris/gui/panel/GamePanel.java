@@ -32,6 +32,7 @@ public class GamePanel extends JPanel {
         frame.setVisible(true);
 
         // Este metodo inicia el game loop, y me acabo  de dar cuenta que tengo que implementar uno para pausarlo o detenerlo xxdxdxdxdxdxdxdxdxdx
-        game.startGameLoop();
+        // Es posible que el thread the de problemas con la interfaces, la implementation que he hecho es muy peruana.
+        //game.startGameLoop();
     }
 }
