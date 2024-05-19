@@ -2,7 +2,7 @@ package tetris.gameLogic.tetrominos;
 
 import tetris.util.MatrixOperations;
 
-public class ZPiece extends Tetromino{
+public class ZPiece extends Tetromino {
     public ZPiece(){
         super(0, 0, 4);
         this.currentShape = new int[][] {

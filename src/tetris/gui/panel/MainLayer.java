@@ -1,15 +1,16 @@
 package tetris.gui.panel;
 
-import tetris.Main;
-import tetris.gui.Game;
 import tetris.gui.MainMenu;
+import tetris.gui.loadResources.InitSoundtrack;
+import tetris.gui.loadResources.LoadImage;
+import tetris.gui.loadResources.LoadSoundtrack;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MainLayer extends JPanel {
-    private final Image background = MainMenu.BACKGROUND.getImage();
+    private final Image background = LoadImage.BACKGROUND.getImage();
     public static final String START_TEXT = "Start";
     public static final String CONTROLS_TEXT = "Controls";
     public static final String SCORES_TEXT = "Scores";
@@ -29,7 +30,7 @@ public class MainLayer extends JPanel {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
-        JLabel label = new JLabel("Tetris");
+        JLabel label = new JLabel("Tetris With Swing");
         panel.add(label);
 
         start = new JButton(new MainMenuHandler(START_TEXT));
@@ -68,7 +69,17 @@ public class MainLayer extends JPanel {
 
         add(panel, BorderLayout.CENTER);
 
+        InitSoundtrack.MENU_SOUNDTRACK.play();
+
         setVisible(true);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (background != null) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     public static class MainMenuHandler extends AbstractAction {
@@ -79,8 +90,11 @@ public class MainLayer extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (getValue(AbstractAction.NAME) == START_TEXT) {
+                InitSoundtrack.MENU_SOUNDTRACK.stop();
+                InitSoundtrack.GAME_SOUNDTRACK.play();
+
                 MainMenu.showGame();
-                //MainMenu.initGame();
+                MainMenu.initGame();
             } else if (getValue(AbstractAction.NAME) == CONTROLS_TEXT) {
                 MainMenu.showInfoPanel();
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {

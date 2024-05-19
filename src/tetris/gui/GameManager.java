@@ -1,14 +1,14 @@
 package tetris.gui;
 
-import tetris.util.interfaces.Drawable;
-import tetris.util.interfaces.Updatable;
+import tetris.util.interfaces.IDrawable;
+import tetris.util.interfaces.IUpdatable;
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
 
 import java.awt.*;
 
-public class GameManager implements Updatable, Drawable {
+public class GameManager implements IUpdatable, IDrawable {
     public static final int ROWS = 20;
     public static final int COLUMNS = 10;
     public static final int BASE_MOVE_DELAY = 150;

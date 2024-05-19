@@ -1,12 +1,12 @@
 package tetris.gui;
 
-import tetris.util.interfaces.Updatable;
+import tetris.util.interfaces.IUpdatable;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Game extends JPanel implements Runnable, Updatable {
+public class Game extends JPanel implements Runnable, IUpdatable {
     private static final int WIDTH = 265;
     private static final int HEIGHT = 535;
     public static final int DRAW_INTERVAL = 1000/60;

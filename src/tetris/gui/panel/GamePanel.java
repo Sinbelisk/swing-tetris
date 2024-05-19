@@ -12,16 +12,7 @@ public class GamePanel extends JPanel {
     }
 
     private void init() {
-        // layout border layout
         setLayout(new BorderLayout());
-        setFocusable(false);
-        Game game = new Game();
-        add(game, BorderLayout.CENTER);
-        setVisible(true);
-
-        game.startGameLoop();
-        //He puesto el Game game = new Game() aqui para probar si era el initGame() de MainMenu el problema pero no, el
-        //el problema pasa en los dos
     }
 
     public static void main(String[] args) {

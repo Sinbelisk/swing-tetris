@@ -1,7 +1,7 @@
 package tetris.gui;
 
-import tetris.util.interfaces.Drawable;
-import tetris.util.interfaces.Updatable;
+import tetris.util.interfaces.IDrawable;
+import tetris.util.interfaces.IUpdatable;
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
@@ -11,7 +11,7 @@ import tetris.gui.events.KeyEvents.KeyHandler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class PieceDrawer implements Drawable, Updatable {
+public class PieceDrawer implements IDrawable, IUpdatable {
     private static final int CELL_SIZE = 25;
     private static final int BASE_DROP_DELAY = 900;
     private static final int PLACEMENT_DELAY = 120;

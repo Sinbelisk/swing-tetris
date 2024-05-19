@@ -1,11 +1,11 @@
 package tetris.gui;
 
-import tetris.util.interfaces.Updatable;
+import tetris.util.interfaces.IUpdatable;
 import tetris.gameLogic.TetrisGrid;
 
 import java.awt.*;
 
-public class BoardDrawer implements Updatable {
+public class BoardDrawer implements IUpdatable {
     private static final int CELL_SIZE = 25;
     public final TetrisGrid GAME_GRID;
     public BoardDrawer(TetrisGrid gameGrid) {
