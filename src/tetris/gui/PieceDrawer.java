@@ -8,7 +8,6 @@ import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -43,11 +42,11 @@ public class PieceDrawer implements Drawable, Updatable {
     @Override
     public void update() {
         debugInput();
-        if(dropTimer.hasElapsed() && !KeyHandler.isKeyPressed(KeyEvent.VK_S)){
+        if (dropTimer.hasElapsed() && !KeyHandler.isKeyPressed(KeyEvent.VK_S)) {
             drop();
         }
 
-        if(currentPiece.isColliding() && placementTimer.hasElapsed()){
+        if (currentPiece.isColliding() && placementTimer.hasElapsed()) {
             placePiece(currentPiece);
         }
 
@@ -57,12 +56,13 @@ public class PieceDrawer implements Drawable, Updatable {
     }
 
     private void drop() {
-        if(canMove(currentPiece, 0, 1)) currentPiece.move(0, 1);
+        if (canMove(currentPiece, 0, 1)) currentPiece.move(0, 1);
     }
 
-    private void debugInput(){
-        if(KeyHandler.isKeyPressed(KeyEvent.VK_ENTER)) GRID.clearAndMoveAllRows();
+    private void debugInput() {
+        if (KeyHandler.isKeyPressed(KeyEvent.VK_ENTER)) GRID.clearAndMoveAllRows();
     }
+
     private void checkForInput() {
         // Value that represents how much the piece moves in a direccion on the board.
         int deltaX = 0;
@@ -83,14 +83,15 @@ public class PieceDrawer implements Drawable, Updatable {
                 currentPiece.rotateCounterClockWise(); // Undo the rotation if not valid
                 return;
             }
-        }else if(KeyHandler.isKeyPressed(KeyEvent.VK_ENTER)){
-           placePiece(currentPiece);
+        } else if (KeyHandler.isKeyPressed(KeyEvent.VK_ENTER)) {
+            placePiece(currentPiece);
         }
 
         if (canMove(currentPiece, deltaX, deltaY)) {
             currentPiece.move(deltaX, deltaY);
         }
     }
+
     public void drawPiece(Graphics2D g2d, Tetromino piece) {
         int[][] shape = piece.getCurrentShape();
         g2d.setColor(GameManager.getPieceColor(piece.getPieceID()));
@@ -102,6 +103,7 @@ public class PieceDrawer implements Drawable, Updatable {
             }
         }
     }
+
     public void placePiece(Tetromino piece) {
         piece.setColliding(false);
         int[][] currentShape = piece.getCurrentShape();
@@ -113,7 +115,7 @@ public class PieceDrawer implements Drawable, Updatable {
         for (int i = 0; i < currentShape.length; i++) {
             for (int j = 0; j < currentShape[i].length; j++) {
                 if (currentShape[i][j] != 0) {
-                    System.out.println((x+i) + "|"+(y+j));
+                    System.out.println((x + i) + "|" + (y + j));
                     GRID.setCell(x + i, y + j, piece.getPieceID());
                 }
             }
@@ -121,7 +123,8 @@ public class PieceDrawer implements Drawable, Updatable {
         currentPiece = BAG.getNewPiece();
         piece.reset();
     }
-    public boolean canMove(Tetromino currentShape, int deltaX, int deltaY) { //Dolor y sufrimiento.
+
+    public boolean canMove(Tetromino currentShape, int deltaX, int deltaY) {
         int[][] shape = currentShape.getCurrentShape();
         int[][] board = GRID.getBoard();
 
@@ -132,15 +135,17 @@ public class PieceDrawer implements Drawable, Updatable {
                     int newCol = currentShape.getPosX() + j + deltaX; // New column
 
                     // Check if it's out of bounds
-                    if (newRow < 0 || newRow >= GameManager.ROWS || newCol <0 || newCol >= GameManager.COLUMNS) {
-                        return false;
+                    if (!insideBounds(newRow, newCol)) return false;
+
+                    if (touchingBottom(newRow)) {
+                        currentPiece.setColliding(true);
                     }
 
-                    if(newRow == GameManager.ROWS-1) currentPiece.setColliding(true);
-
-                    // Check if it collides with another piece on the board or when it reaches the bottom.
+                    // Check if it collides with another piece currentShape.setColliding(true);
                     if (board[newRow][newCol] != 0) {
-                        currentPiece.setColliding(true);
+                        if (deltaY > 0) {
+                            currentPiece.setColliding(true);
+                        }
                         return false;
                     }
                 }
@@ -148,4 +153,13 @@ public class PieceDrawer implements Drawable, Updatable {
         }
         return true;
     }
+
+    private boolean insideBounds(int newRow, int newColumn) {
+        return newRow >= 0 && newRow < GameManager.ROWS && newColumn >= 0 && newColumn < GameManager.COLUMNS;
+    }
+
+    private boolean touchingBottom(int newRow) { // checks if the row is touching the bottom of the board or another piece
+        return newRow == GameManager.ROWS - 1;
+    }
+
 }
