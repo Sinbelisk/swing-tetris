@@ -10,6 +10,7 @@ public class InfoLayer extends JPanel {
     public static final String BACK_TEXT = "Back";
     public static JButton back;
     public static JLabel controls;
+
     public InfoLayer() {
         init();
     }
@@ -34,6 +35,7 @@ public class InfoLayer extends JPanel {
 
         constraints.gridx = 0;
         constraints.gridy = 1;
+        constraints.insets = new Insets(10, 0, 0, 0);
         panel.add(controls, constraints);
 
         constraints.gridx = 0;
