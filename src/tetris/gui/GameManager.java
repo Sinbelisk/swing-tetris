@@ -17,7 +17,8 @@ public class GameManager implements IUpdatable, IDrawable {
     private final BoardDrawer BOARD_DRAWER = new BoardDrawer(GRID);
     private final PieceDrawer PIECE_DRAWER = new PieceDrawer(GRID, BAG, new Timer(BASE_MOVE_DELAY));
 
-    public GameManager() {}
+    public GameManager() {
+    }
 
     public static Color getPieceColor(int pieceID) {
         return switch (pieceID) {

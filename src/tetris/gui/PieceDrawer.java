@@ -8,6 +8,7 @@ import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
