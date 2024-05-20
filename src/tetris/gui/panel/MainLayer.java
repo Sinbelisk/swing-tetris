@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.Main;
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitSoundtrack;
 import tetris.gui.loadResources.InitImage;
@@ -7,6 +8,8 @@ import tetris.gui.loadResources.InitImage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
+import static tetris.gui.MainMenu.game;
 
 public class MainLayer extends JPanel {
     public static final String START_TEXT = "Start";
@@ -29,7 +32,8 @@ public class MainLayer extends JPanel {
         panel.setLayout(new GridBagLayout());
         panel.setOpaque(false);
 
-        JLabel label = new JLabel("Tetris With Swing");
+        JLabel label = new JLabel(MainMenu.APP_NAME);
+        label.setForeground(Color.WHITE);
         panel.add(label);
 
         start = new JButton(new MainMenuHandler(START_TEXT));
@@ -94,7 +98,7 @@ public class MainLayer extends JPanel {
                 InitSoundtrack.GAME_SOUNDTRACK.play();
 
                 MainMenu.showGame();
-                MainMenu.initGame();
+                game.startGameLoop();
             } else if (getValue(AbstractAction.NAME) == CONTROLS_TEXT) {
                 MainMenu.showInfoPanel();
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {

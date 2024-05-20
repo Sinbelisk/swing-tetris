@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class LoadSoundtrack {
     private Clip clip;
-    private String song;
+    private final String song;
     private boolean isLoaded = false;
 
     public LoadSoundtrack(String song) {

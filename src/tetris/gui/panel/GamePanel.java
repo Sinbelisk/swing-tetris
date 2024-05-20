@@ -6,6 +6,8 @@ import tetris.gui.MainMenu;
 import javax.swing.*;
 import java.awt.*;
 
+import static tetris.gui.MainMenu.game;
+
 public class GamePanel extends JPanel {
     public GamePanel() {
         init();
@@ -13,6 +15,10 @@ public class GamePanel extends JPanel {
 
     private void init() {
         setLayout(new BorderLayout());
+
+        add(game, BorderLayout.CENTER);
+        setFocusable(false);
+        setVisible(true);
     }
 
     public static void main(String[] args) {

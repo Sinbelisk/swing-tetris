@@ -31,9 +31,13 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         }
     }
 
-    public void startGameLoop(){
+    public void startGameLoop() {
         gameLoop = new Thread(this);
         gameLoop.start();
+    }
+
+    public void stopGameLoop() {
+        //Stop Game
     }
 
     @Override

@@ -7,6 +7,8 @@ import tetris.gui.panel.MainLayer;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.lang.Thread.sleep;
+
 public class MainMenu extends JFrame {
     public static final String APP_NAME = "Tetris With Swing";
     private static final ImageIcon ICON = new ImageIcon("resources/images/icon.png");
@@ -15,9 +17,10 @@ public class MainMenu extends JFrame {
     private static final String MAIN_PANEL = "MainPanel";
     private static final String INFO_PANEL = "InfoPanel";
     private static final String GAME_PANEL = "GamePanel";
-    private static MainLayer mainPanel = new MainLayer();
-    private static InfoLayer infoPanel = new InfoLayer();
-    private static GamePanel gamePanel = new GamePanel();
+    public static final Game game = new Game();
+    public static GamePanel gamePanel = new GamePanel();
+    public static MainLayer mainPanel = new MainLayer();
+    public static InfoLayer infoPanel = new InfoLayer();
     private static CardLayout cardLayout;
     private static JPanel mainContainer;
     public MainMenu() {
@@ -58,7 +61,6 @@ public class MainMenu extends JFrame {
     }
 
     public static void initGame() {
-        Game game = new Game();
         gamePanel.add(game, BorderLayout.CENTER);
         gamePanel.setFocusable(false);
         gamePanel.setVisible(true);

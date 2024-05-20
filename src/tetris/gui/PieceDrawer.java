@@ -11,6 +11,8 @@ import tetris.gui.events.KeyEvents.KeyHandler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static tetris.gui.MainMenu.game;
+
 public class PieceDrawer implements IDrawable, IUpdatable {
     private static final int CELL_SIZE = 25;
     private static final int BASE_DROP_DELAY = 900;
@@ -52,6 +54,10 @@ public class PieceDrawer implements IDrawable, IUpdatable {
 
         if (moveTimer.hasElapsed()) {
             checkForInput();
+        }
+
+        if (KeyHandler.isKeyPressed(KeyEvent.VK_ESCAPE)) {
+            game.stopGameLoop();
         }
     }
 
