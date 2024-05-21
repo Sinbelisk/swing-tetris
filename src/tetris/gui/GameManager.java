@@ -1,5 +1,7 @@
 package tetris.gui;
 
+import tetris.Main;
+import tetris.db.DBManager;
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.BagQueueObserver;
@@ -56,15 +58,23 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
             newPiece();
         }
 
-        if(!pieceController.isGameOver()){
+        if(pieceController.isGameOver()){
             gameOver();
         }
-
     }
 
     private void gameOver() {
-        String message = "¡HAS PERDIDO!, ¿Quieres guardar tu score?";
-        JOptionPane.showConfirmDialog(JOptionPane.getRootFrame(), message);
+        String gameOverMessage = "GAME OVER!, Do you want to save your score?";
+        int answer = JOptionPane.showConfirmDialog(JOptionPane.getRootFrame(), gameOverMessage);
+
+        if (answer == 0) {
+            String inputUserMessage = "Insert your User Name";
+            String userName = JOptionPane.showInputDialog(inputUserMessage);
+
+            DBManager.insertInto(userName, 0);
+        } else if (answer == 1) {
+
+        }
     }
 
     @Override
@@ -72,5 +82,9 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
         boardDrawer.drawOccupiedSlots(g2d);
         pieceDrawer.draw(g2d);
         boardDrawer.drawGrid(g2d);
+    }
+
+    public BoardDrawer getBoardDrawer() {
+        return this.boardDrawer;
     }
 }
