@@ -14,6 +14,7 @@ public class GamePanel extends JPanel {
     private final Game game;
     private final NextPieceBox nextPieceBox;
     public static final String PAUSE_TEXT = "Pause";
+    private JLabel tittle;
     private JButton pause;
     public GamePanel(MainMenu menu, Game game) {
         this.menu = menu;
@@ -36,6 +37,8 @@ public class GamePanel extends JPanel {
         infoPanel.setLayout(boxLayout);
         infoPanel.setOpaque(false);
 
+        tittle = new JLabel(MainMenu.APP_NAME);
+        tittle.setForeground(Color.WHITE);
         pause = new JButton(new PauseAction("Pause"));
 
         Dimension buttonSize = new Dimension(150, 50);
@@ -45,24 +48,18 @@ public class GamePanel extends JPanel {
         infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
-        /* Score
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.insets = new Insets(10, 0, 0, 0);
-        infoPanel.add(start, constraints);
 
-         */
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        infoPanel.add(tittle, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
         infoPanel.add(nextPieceBox, constraints);
 
-
-
-        constraints.gridx = 0;
+        constraints.gridx = 1;
         constraints.gridy = 3;
         infoPanel.add(pause, constraints);
-
 
         add(game);
         add(infoPanel);

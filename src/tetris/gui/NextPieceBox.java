@@ -16,6 +16,7 @@ public class NextPieceBox extends JPanel implements BagQueueObserver {
         setSize(Game.SIZE * gridSize, Game.SIZE * gridSize);
         setOpaque(false);
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -23,11 +24,13 @@ public class NextPieceBox extends JPanel implements BagQueueObserver {
         if(currentPiece != null) drawPiece(g2d, currentPiece);
         drawString(g2d);
     }
+
     public void drawString(Graphics2D g2d){
         String text = "Next piece:";
         g2d.setColor(Color.WHITE);
-        g2d.drawString("Next Piece:", (getWidth()-text.length())/2, 10);
+        g2d.drawString("Next Piece:", (getWidth()-text.length())/2 - 20, 150);
     }
+
     public void drawPiece(Graphics2D g2d, Tetromino piece) {
         g2d.setStroke(new BasicStroke(3));
         int[][] shape = piece.getCurrentShape();
