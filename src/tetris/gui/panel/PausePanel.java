@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitImage;
 
@@ -9,13 +10,15 @@ import java.awt.event.ActionEvent;
 
 public class PausePanel extends JPanel {
     private final MainMenu menu;
+    private final Game game;
     public static final String MENU_PAUSE_NAME = "Pause";
     public static final String CONTINUE_TEXT = "Continue";
     public static final String EXIT_TEXT = "Exit";
     public JButton continue_button;
     public JButton exit;
-    public PausePanel(MainMenu menu) {
+    public PausePanel(MainMenu menu, Game game) {
         this.menu = menu;
+        this.game = game;
         init();
     }
     private void init() {
@@ -77,6 +80,7 @@ public class PausePanel extends JPanel {
                 menu.showGame();
             } else if (getValue(AbstractAction.NAME) == EXIT_TEXT) {
                 menu.showMainLayer();
+                game.stopGameLoop();
             }
         }
     }

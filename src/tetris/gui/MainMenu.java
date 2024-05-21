@@ -19,10 +19,10 @@ public class MainMenu extends JFrame {
     private static final String GAME_PANEL = "GamePanel";
     private static final String PAUSE_PANEL = "PausePanel";
     public static final Game game = new Game();
-    public GamePanel gamePanel = new GamePanel(this);
-    public MainLayer mainPanel = new MainLayer(this);
+    public GamePanel gamePanel = new GamePanel(this, game);
+    public MainLayer mainPanel = new MainLayer(this, game);
     public OptionLayer infoPanel = new OptionLayer(this);
-    public PausePanel pausePanel = new PausePanel(this);
+    public PausePanel pausePanel = new PausePanel(this, game);
     private CardLayout cardLayout;
     private JPanel mainContainer;
     public MainMenu() {
