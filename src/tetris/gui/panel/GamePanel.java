@@ -16,14 +16,14 @@ public class GamePanel extends JPanel {
 
     private final MainMenu menu;
     private final Game game;
-    private Bag bag = new Bag();
-    private Tetromino tetromino = bag.getNewPiece();
+    private final NextPieceBox nextPieceBox;
     public static final String PAUSE_TEXT = "Pause";
-    private NextPieceBox nextPieceBox;
     private JButton pause;
     public GamePanel(MainMenu menu, Game game) {
         this.menu = menu;
         this.game = game;
+        nextPieceBox = new NextPieceBox();
+        game.configureNextPieceBox(nextPieceBox);
         init();
     }
 
@@ -36,10 +36,11 @@ public class GamePanel extends JPanel {
         gamePanel.setLayout(new BorderLayout());
 
         JPanel infoPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(infoPanel, BoxLayout.Y_AXIS);
+        infoPanel.setLayout(boxLayout);
         infoPanel.setOpaque(false);
 
         pause = new JButton(new PauseAction("Pause"));
-        nextPieceBox = new NextPieceBox(bag);
 
         Dimension buttonSize = new Dimension(150, 50);
         pause.setPreferredSize(buttonSize);

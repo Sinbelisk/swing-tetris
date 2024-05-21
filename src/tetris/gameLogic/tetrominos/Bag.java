@@ -47,7 +47,7 @@ public class Bag {
         this.currentPiece.startingY = 0;
     }
 
-    public Queue<Tetromino> getBagQueue() {
-        return bagQueue;
+    public Tetromino getNextPiece(){
+        return bagQueue.poll();
     }
 }

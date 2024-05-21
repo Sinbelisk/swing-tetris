@@ -2,19 +2,23 @@ package tetris.gui;
 
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
-import tetris.util.interfaces.Observer;
+import tetris.util.interfaces.BagObserver;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NextPieceBox extends JPanel implements Observer {
+public class NextPieceBox extends JPanel {
     private static final int gridSize = 6;
-    private final Bag bag;
     private Tetromino currentPiece;
-    public NextPieceBox(Bag bag) {
-        this.bag = bag;
+    private Bag bag;
+    public NextPieceBox() {
         setSize(Game.SIZE * gridSize, Game.SIZE * gridSize);
-        setBackground(Color.black);
+        setOpaque(false);
+    }
+
+    public void setBag(Bag bag){
+        this.bag = bag;
+        currentPiece = bag.getNextPiece();
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -27,7 +31,7 @@ public class NextPieceBox extends JPanel implements Observer {
     public void drawString(Graphics2D g2d){
         String text = "Next piece:";
         g2d.setColor(Color.WHITE);
-        g2d.drawString("Next Piece:", (getWidth()-text.length())/3, 10);
+        g2d.drawString("Next Piece:", (getWidth()-text.length())/2, 10);
     }
     public void drawPiece(Graphics2D g2d, Tetromino piece) {
         g2d.setStroke(new BasicStroke(3));
@@ -57,10 +61,5 @@ public class NextPieceBox extends JPanel implements Observer {
         for (int j = 0; j <= shape[0].length; j++) {
             g2d.drawLine(offsetX + j * Game.SIZE, offsetY, offsetX + j * Game.SIZE, offsetY + pieceHeight);
         }
-    }
-
-    @Override
-    public void refreshPiece(Tetromino newPiece) {
-        this.currentPiece = newPiece;
     }
 }

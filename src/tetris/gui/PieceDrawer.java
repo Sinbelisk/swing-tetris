@@ -1,24 +1,20 @@
 package tetris.gui;
 
-import tetris.util.interfaces.IDrawable;
-import tetris.util.interfaces.IUpdatable;
-import tetris.gameLogic.TetrisGrid;
-import tetris.gameLogic.Timer;
-import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
-import tetris.gui.events.KeyEvents.KeyHandler;
-import tetris.util.interfaces.Observer;
+import tetris.util.interfaces.BagObserver;
+import tetris.util.interfaces.IDrawable;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
-public class PieceDrawer implements IDrawable, Observer {
+public class PieceDrawer implements IDrawable, BagObserver {
     private static final int CELL_SIZE = 25;
     private Tetromino currentPiece;
+
     @Override
     public void draw(Graphics2D g2d) {
         drawPiece(g2d, currentPiece);
     }
+
     public void drawPiece(Graphics2D g2d, Tetromino piece) {
         int[][] shape = piece.getCurrentShape();
         g2d.setColor(GameManager.getPieceColor(piece.getPieceID()));
@@ -30,6 +26,7 @@ public class PieceDrawer implements IDrawable, Observer {
             }
         }
     }
+
     @Override
     public void refreshPiece(Tetromino newPiece) {
         this.currentPiece = newPiece;

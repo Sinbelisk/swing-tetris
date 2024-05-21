@@ -2,7 +2,9 @@ package tetris.gui;
 
 import tetris.gameLogic.Score;
 import tetris.gameLogic.TetrisGrid;
+import tetris.gameLogic.tetrominos.Bag;
 import tetris.gui.events.KeyEvents.KeyHandler;
+import tetris.gui.panel.GamePanel;
 import tetris.util.interfaces.IUpdatable;
 
 import javax.swing.*;
@@ -15,6 +17,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     public static final int SIZE = 25;
     public static final int DRAW_INTERVAL = 1000 / 60;
     private final TetrisGrid grid = new TetrisGrid(ROWS, COLUMNS);
+    private final Bag bag = new Bag();
     private final Score score = new Score(1);
     private final BoardDrawer boardDrawer;
     private final PieceDrawer pieceDrawer;
@@ -25,19 +28,21 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private Thread gameLoop;
     private volatile boolean running = false;
     private volatile boolean paused = false;
-
     public Game() {
         this.boardDrawer = new BoardDrawer(grid);
         this.pieceController = new PieceController(grid);
         this.pieceDrawer = new PieceDrawer();
         this.keyHandler = new KeyHandler(pieceController, this);
 
-        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager);
+        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager, bag);
 
         this.addKeyListener(keyHandler);
         setFocusable(true);
     }
 
+    public void configureNextPieceBox(NextPieceBox nextPieceBox){
+        nextPieceBox.setBag(bag);
+    }
     @Override
     public void run() {
         while (gameLoop != null) {
@@ -69,7 +74,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     public boolean isPaused() {
         return paused;
     }
-
     public void stopGameLoop() {
         //Stop Game
         running = false;

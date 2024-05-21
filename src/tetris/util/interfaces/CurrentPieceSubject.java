@@ -5,19 +5,19 @@ import tetris.gameLogic.tetrominos.Tetromino;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Subject {
-    List<Observer> observers = new ArrayList<>();
+public interface CurrentPieceSubject {
+    List<BagObserver> observers = new ArrayList<>();
 
-    default void addObserver(Observer observer) {
+    default void addObserver(BagObserver observer) {
         observers.add(observer);
     }
 
-    default void removeObserver(Observer observer) {
+    default void removeObserver(BagObserver observer) {
         observers.remove(observer);
     }
 
     default void notifyObservers(Tetromino newPiece) {
-        for (Observer observer : observers) {
+        for (BagObserver observer : observers) {
             observer.refreshPiece(newPiece);
         }
     }

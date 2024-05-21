@@ -2,25 +2,25 @@ package tetris.gui;
 
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
+import tetris.util.interfaces.CurrentPieceSubject;
 import tetris.util.interfaces.IDrawable;
 import tetris.util.interfaces.IUpdatable;
-import tetris.util.interfaces.Subject;
 
 import java.awt.*;
 
-public class GameManager implements IUpdatable, IDrawable, Subject {
+public class GameManager implements IUpdatable, IDrawable, CurrentPieceSubject {
     private final BoardDrawer boardDrawer;
     private final PieceDrawer pieceDrawer;
     private final PieceController pieceController;
     private final ScoreManager scoreManager;
-    private final Bag bag = new Bag();
-    private final NextPieceBox nextPieceBox = new NextPieceBox(bag);
+    private final Bag bag;
 
-    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager) {
+    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager, Bag bag) {
         this.boardDrawer = boardDrawer;
         this.pieceDrawer = pieceDrawer;
         this.pieceController = pieceController;
         this.scoreManager = scoreManager;
+        this.bag = new Bag();
 
         addObserver(pieceDrawer);
         addObserver(pieceController);
