@@ -12,8 +12,6 @@ import tetris.util.interfaces.Observer;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static tetris.gui.MainMenu.game;
-
 public class PieceDrawer implements IDrawable, Observer {
     private static final int CELL_SIZE = 25;
     private Tetromino currentPiece;

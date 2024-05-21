@@ -62,7 +62,5 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
         boardDrawer.drawOccupiedSlots(g2d);
         pieceDrawer.draw(g2d);
         boardDrawer.drawGrid(g2d);
-
-
     }
 }

@@ -1,26 +1,35 @@
 package tetris.gui.panel;
 
+import tetris.gameLogic.tetrominos.Bag;
+import tetris.gameLogic.tetrominos.TPiece;
+import tetris.gameLogic.tetrominos.Tetromino;
+import tetris.gui.Game;
 import tetris.gui.MainMenu;
+import tetris.gui.NextPieceBox;
 import tetris.gui.loadResources.InitImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import static tetris.gui.MainMenu.game;
-
 public class GamePanel extends JPanel {
+
     private final MainMenu menu;
+    private final Game game;
+    private Bag bag = new Bag();
+    private Tetromino tetromino = bag.getNewPiece();
     public static final String PAUSE_TEXT = "Pause";
+    private NextPieceBox nextPieceBox;
     private JButton pause;
-    public GamePanel(MainMenu menu) {
+    public GamePanel(MainMenu menu, Game game) {
         this.menu = menu;
+        this.game = game;
         init();
     }
 
     private void init() {
-        setOpaque(false);
         setLayout(new GridLayout(1, 2));
+        setOpaque(false);
 
         JPanel gamePanel = new JPanel();
         gamePanel.setOpaque(false);
@@ -30,11 +39,13 @@ public class GamePanel extends JPanel {
         infoPanel.setOpaque(false);
 
         pause = new JButton(new PauseAction("Pause"));
+        nextPieceBox = new NextPieceBox(bag);
 
         Dimension buttonSize = new Dimension(150, 50);
         pause.setPreferredSize(buttonSize);
 
         infoPanel.add(pause);
+        infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
         /* Score
@@ -45,11 +56,11 @@ public class GamePanel extends JPanel {
 
          */
 
-        /* Grid
         constraints.gridx = 0;
         constraints.gridy = 2;
-        infoPanel.add(scores, constraints);
-         */
+        infoPanel.add(nextPieceBox, constraints);
+
+
 
         constraints.gridx = 0;
         constraints.gridy = 3;
