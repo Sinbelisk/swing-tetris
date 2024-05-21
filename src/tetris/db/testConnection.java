@@ -12,7 +12,7 @@ public class testConnection {
             String url = "jdbc:sqlite:src/tetris/db/tetrisDB.db";
             // Crea una conexión a la base de datos
             conn = DriverManager.getConnection(url);
-            System.out.println("Conexión a SQLite establecida.");
+            System.out.println("Connection is OK!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

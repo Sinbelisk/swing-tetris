@@ -53,19 +53,15 @@ public class GamePanel extends JPanel {
         constraints.gridy = 3;
         constraints.insets = new Insets(10, 0, 0, 0);
         infoPanel.add(start, constraints);
-
          */
 
         constraints.gridx = 0;
         constraints.gridy = 2;
-        infoPanel.add(nextPieceBox, constraints);
-
-
+        infoPanel.add(nextPieceBox, constraints);798
 
         constraints.gridx = 0;
         constraints.gridy = 3;
         infoPanel.add(pause, constraints);
-
 
         add(game);
         add(infoPanel);
