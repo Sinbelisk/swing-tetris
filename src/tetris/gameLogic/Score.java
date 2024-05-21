@@ -1,7 +1,7 @@
 package tetris.gameLogic;
 
 public class Score {
-    // this class implements the Original Nintento scoring system.
+    // this class implements the Original N******o scoring system.
     private static int SCORE_ONE_LINE = 40;
     private static int SCORE_TWO_LINES = 100;
     private static int SCORE_THREE_LINES = 300;
