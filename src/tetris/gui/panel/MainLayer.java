@@ -100,7 +100,7 @@ public class MainLayer extends JPanel {
                 menu.showGame();
                 game.startGameLoop();
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {
-
+                menu.showDBLayer();
             } else if (getValue(AbstractAction.NAME) == OPTIONS_TEXT) {
                 menu.showOptionPanel();
             } else if (getValue(AbstractAction.NAME) == QUIT_TEXT) {

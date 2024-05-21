@@ -39,13 +39,13 @@ public class GamePanel extends JPanel {
         infoPanel.setOpaque(false);
 
         pause = new JButton(new PauseAction("Pause"));
-        nextPieceBox = new NextPieceBox(bag);
+        //nextPieceBox = new NextPieceBox(bag);
 
         Dimension buttonSize = new Dimension(150, 50);
         pause.setPreferredSize(buttonSize);
 
         infoPanel.add(pause);
-        infoPanel.add(nextPieceBox);
+        //infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
         /* Score
@@ -55,9 +55,12 @@ public class GamePanel extends JPanel {
         infoPanel.add(start, constraints);
          */
 
+        /*
         constraints.gridx = 0;
         constraints.gridy = 2;
-        infoPanel.add(nextPieceBox, constraints);798
+        infoPanel.add(nextPieceBox, constraints);
+
+         */
 
         constraints.gridx = 0;
         constraints.gridy = 3;
