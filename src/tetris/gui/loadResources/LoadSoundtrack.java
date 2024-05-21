@@ -54,5 +54,23 @@ public class LoadSoundtrack {
             clip.start();
         }
     }
+
+    // Set Volume (0.0 to 1.0)
+    public void setVolume(float volume) {
+        if (isLoaded && clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float min = volumeControl.getMinimum();
+            float max = volumeControl.getMaximum();
+            float db;
+
+            if (volume == 0) {
+                db = min;
+            } else {
+                db = (float) (Math.log10(volume) * 20);
+            }
+
+            volumeControl.setValue(Math.max(min, db));
+        }
+    }
 }
 
