@@ -1,10 +1,7 @@
 package tetris.gui;
 
 import tetris.gui.loadResources.InitSoundtrack;
-import tetris.gui.panel.GamePanel;
-import tetris.gui.panel.OptionLayer;
-import tetris.gui.panel.MainLayer;
-import tetris.gui.panel.PausePanel;
+import tetris.gui.panel.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +13,14 @@ public class MainMenu extends JFrame {
     public static final int MAIN_MENU_LENGTH = 535;
     private static final String MAIN_PANEL = "MainPanel";
     private static final String OPTION_PANEL = "OptionPanel";
+    private static final String DB_PANEL = "DBPanel";
     private static final String GAME_PANEL = "GamePanel";
     private static final String PAUSE_PANEL = "PausePanel";
     public static final Game game = new Game();
     public GamePanel gamePanel = new GamePanel(this, game);
     public MainLayer mainPanel = new MainLayer(this, game);
     public OptionLayer infoPanel = new OptionLayer(this);
+    public DBPanel dbPanel = new DBPanel(this);
     public PausePanel pausePanel = new PausePanel(this, game);
     private CardLayout cardLayout;
     private JPanel mainContainer;
@@ -45,6 +44,10 @@ public class MainMenu extends JFrame {
         cardLayout.show(mainContainer, GAME_PANEL);
     }
 
+    public void showDBLayer() {
+        cardLayout.show(mainContainer, DB_PANEL);
+    }
+
     public void showPauseLayer() {
         InitSoundtrack.GAME_SOUNDTRACK.stop();
         cardLayout.show(mainContainer, PAUSE_PANEL);
@@ -65,6 +68,7 @@ public class MainMenu extends JFrame {
         mainContainer.add(mainPanel, MAIN_PANEL);
         mainContainer.add(infoPanel, OPTION_PANEL);
         mainContainer.add(pausePanel, PAUSE_PANEL);
+        mainContainer.add(dbPanel, DB_PANEL);
         mainContainer.add(gamePanel, GAME_PANEL);
 
         add(mainContainer);

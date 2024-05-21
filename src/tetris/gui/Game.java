@@ -44,7 +44,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     }
     @Override
     public void run() {
-        while (gameLoop != null) {
+        while (running) { // Cambiamos la condición de salida del bucle
             try {
                 Thread.sleep(DRAW_INTERVAL);
                 if (!paused){
@@ -75,15 +75,16 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     }
     public void stopGameLoop() {
         //Stop Game
-        running = false;
         if (gameLoop != null) {
             try {
+                running = false;
                 gameLoop.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
     }
+
     public void pauseGameLoop() {
         paused = true;
         menu.showPauseLayer();
@@ -91,6 +92,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
 
     public void resumeGameLoop() {
         paused = false;
+        menu.showGame();
     }
 
     @Override

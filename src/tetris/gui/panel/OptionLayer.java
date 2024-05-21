@@ -36,7 +36,7 @@ public class OptionLayer extends JPanel {
         Dimension buttonSize = new Dimension(200, 50);
         back.setPreferredSize(buttonSize);
 
-        volumeSlider = new JSlider(0, 100, 100);
+        volumeSlider = new JSlider(0, 100, 0);
         volumeSlider.addChangeListener(e -> {
             float volume = volumeSlider.getValue() / 100.0f;
             InitSoundtrack.MENU_SOUNDTRACK.setVolume(volume);
@@ -122,6 +122,7 @@ public class OptionLayer extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             menu.showMainLayer();
+
         }
     }
 }
