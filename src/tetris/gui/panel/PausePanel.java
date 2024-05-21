@@ -2,7 +2,6 @@ package tetris.gui.panel;
 
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitImage;
-import tetris.gui.loadResources.InitSoundtrack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,6 +53,7 @@ public class PausePanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Image background = InitImage.BACKGROUND.getImage();
         super.paintComponent(g);
         if (background != null) {
