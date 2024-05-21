@@ -7,18 +7,16 @@ import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.events.KeyEvents.KeyHandler;
+import tetris.util.interfaces.Observer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static tetris.gui.MainMenu.game;
 
-public class PieceDrawer implements IDrawable {
+public class PieceDrawer implements IDrawable, Observer {
     private static final int CELL_SIZE = 25;
-    private final Tetromino currentPiece;
-    public PieceDrawer(Tetromino currentPiece) {
-        this.currentPiece = currentPiece;
-    }
+    private Tetromino currentPiece;
     @Override
     public void draw(Graphics2D g2d) {
         drawPiece(g2d, currentPiece);
@@ -33,5 +31,9 @@ public class PieceDrawer implements IDrawable {
                 }
             }
         }
+    }
+    @Override
+    public void refreshPiece(Tetromino newPiece) {
+        this.currentPiece = newPiece;
     }
 }

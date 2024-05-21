@@ -14,7 +14,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     public static final int COLUMNS = 10;
     public static final int DRAW_INTERVAL = 1000/60;
     private Thread gameLoop;
-    private final Bag bag = new Bag();
     private final TetrisGrid grid = new TetrisGrid(ROWS, COLUMNS);
     private final BoardDrawer boardDrawer;
     private final PieceDrawer pieceDrawer;
@@ -23,11 +22,9 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private final GameManager gameManager;
 
     public Game() {
-        Tetromino firstPiece = bag.getNewPiece();
-
         this.boardDrawer = new BoardDrawer(grid);
-        this.pieceDrawer = new PieceDrawer(firstPiece);
-        this.pieceController = new PieceController(grid, bag, firstPiece);
+        this.pieceController = new PieceController(grid);
+        this.pieceDrawer = new PieceDrawer();
         this.keyHandler = new KeyHandler(pieceController);
 
         this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController);
