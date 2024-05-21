@@ -1,5 +1,6 @@
 package tetris.gui.events.KeyEvents;
 
+import tetris.gui.Game;
 import tetris.gui.PieceController;
 
 import java.awt.event.KeyAdapter;
@@ -7,9 +8,10 @@ import java.awt.event.KeyEvent;
 
 public class KeyHandler extends KeyAdapter {
     private final PieceController pieceController;
-
-    public KeyHandler(PieceController pieceController) {
+    private final Game game;
+    public KeyHandler(PieceController pieceController,Game game) {
         this.pieceController = pieceController;
+        this.game = game;
     }
     @Override
     public void keyPressed(KeyEvent e) {
@@ -33,6 +35,10 @@ public class KeyHandler extends KeyAdapter {
             case KeyEvent.VK_W:
                 pieceController.move(0, -1);
                 break;
+            case KeyEvent.VK_ESCAPE:
+                if(!game.isPaused()){
+                    game.pauseGameLoop();
+                } else game.resumeGameLoop();
         }
     }
 }
