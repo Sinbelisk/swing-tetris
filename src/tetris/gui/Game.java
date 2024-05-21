@@ -27,7 +27,8 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private Thread gameLoop;
     private volatile boolean running = false;
     private volatile boolean paused = false;
-    public Game() {
+    public Game(MainMenu mainMenu) {
+        this.menu = mainMenu;
         this.boardDrawer = new BoardDrawer(grid);
         this.pieceController = new PieceController(grid);
         this.pieceDrawer = new PieceDrawer();
@@ -66,15 +67,12 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         }
     }
 
-    public boolean isRunning() {
-        return running;
-    }
 
     public boolean isPaused() {
         return paused;
     }
     public void stopGameLoop() {
-        //Stop Game
+
         if (gameLoop != null) {
             try {
                 running = false;
@@ -83,6 +81,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
                 Thread.currentThread().interrupt();
             }
         }
+        menu.reset();
     }
 
     public void pauseGameLoop() {

@@ -126,7 +126,6 @@ public class PieceController implements IUpdatable, BagObserver {
     public boolean isGameOver() {
         return gameOver;
     }
-
     @Override
     public void refreshPiece(Tetromino newPiece) {
         this.currentPiece = newPiece;

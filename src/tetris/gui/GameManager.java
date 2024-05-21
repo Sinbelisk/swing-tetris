@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class GameManager implements IUpdatable, IDrawable, PieceSubject {
     private final BoardDrawer boardDrawer;
-    private final PieceDrawer pieceDrawer;
+    public final PieceDrawer pieceDrawer;
     private final PieceController pieceController;
     private final ScoreManager scoreManager;
     public final Bag bag;
@@ -56,7 +56,7 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
             newPiece();
         }
 
-        if(!pieceController.isGameOver()){
+        if(pieceController.isGameOver()){
             gameOver();
         }
 
