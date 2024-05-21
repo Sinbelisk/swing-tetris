@@ -11,6 +11,7 @@ import java.awt.*;
 public class Game extends JPanel implements Runnable, IUpdatable {
     public static final int ROWS = 20;
     public static final int COLUMNS = 10;
+    public static final int SIZE = 25;
     public static final int DRAW_INTERVAL = 1000 / 60;
     private final TetrisGrid grid = new TetrisGrid(ROWS, COLUMNS);
     private final Score score = new Score(1);
@@ -20,7 +21,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private final PieceController pieceController;
     private final KeyHandler keyHandler;
     private final GameManager gameManager;
-
     private Thread gameLoop;
     private volatile boolean running = false;
     private volatile boolean paused = false;
