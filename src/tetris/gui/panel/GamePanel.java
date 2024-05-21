@@ -1,7 +1,5 @@
 package tetris.gui.panel;
 
-import tetris.gameLogic.tetrominos.Bag;
-import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.NextPieceBox;
@@ -14,14 +12,14 @@ import java.awt.event.ActionEvent;
 public class GamePanel extends JPanel {
     private final MainMenu menu;
     private final Game game;
-    private Bag bag = new Bag();
-    private Tetromino tetromino = bag.getNewPiece();
+    private final NextPieceBox nextPieceBox;
     public static final String PAUSE_TEXT = "Pause";
-    private NextPieceBox nextPieceBox;
     private JButton pause;
     public GamePanel(MainMenu menu, Game game) {
         this.menu = menu;
         this.game = game;
+        nextPieceBox = new NextPieceBox();
+        game.configureNextPieceBox(nextPieceBox);
         init();
     }
 
@@ -34,16 +32,17 @@ public class GamePanel extends JPanel {
         gamePanel.setLayout(new BorderLayout());
 
         JPanel infoPanel = new JPanel();
+        BoxLayout boxLayout = new BoxLayout(infoPanel, BoxLayout.Y_AXIS);
+        infoPanel.setLayout(boxLayout);
         infoPanel.setOpaque(false);
 
         pause = new JButton(new PauseAction("Pause"));
-        //nextPieceBox = new NextPieceBox(bag);
 
         Dimension buttonSize = new Dimension(150, 50);
         pause.setPreferredSize(buttonSize);
 
         infoPanel.add(pause);
-        //infoPanel.add(nextPieceBox);
+        infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
         /* Score
@@ -51,18 +50,19 @@ public class GamePanel extends JPanel {
         constraints.gridy = 3;
         constraints.insets = new Insets(10, 0, 0, 0);
         infoPanel.add(start, constraints);
+
          */
 
-        /*
         constraints.gridx = 0;
         constraints.gridy = 2;
         infoPanel.add(nextPieceBox, constraints);
 
-         */
+
 
         constraints.gridx = 0;
         constraints.gridy = 3;
         infoPanel.add(pause, constraints);
+
 
         add(game);
         add(infoPanel);
