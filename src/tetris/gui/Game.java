@@ -20,7 +20,10 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private final PieceController pieceController;
     private final KeyHandler keyHandler;
     private final GameManager gameManager;
+
     private Thread gameLoop;
+    private volatile boolean running = false;
+    private volatile boolean paused = false;
 
     public Game() {
         this.boardDrawer = new BoardDrawer(grid);
@@ -39,8 +42,10 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         while (gameLoop != null) {
             try {
                 Thread.sleep(DRAW_INTERVAL);
-                update();
-                repaint();
+                if (!paused){
+                    update();
+                    repaint();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -48,12 +53,32 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     }
 
     public void startGameLoop() {
-        gameLoop = new Thread(this);
-        gameLoop.start();
+        //start game
+        if (gameLoop == null || !running) {
+            gameLoop = new Thread(this);
+            running = true;
+            gameLoop.start();
+        }
     }
 
     public void stopGameLoop() {
         //Stop Game
+        running = false;
+        if (gameLoop != null) {
+            try {
+                gameLoop.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+    public void pauseGameLoop() {
+        paused = true;
+        MainMenu.showPauseLayer();
+    }
+
+    public void resumeGameLoop() {
+        paused = false;
     }
 
     @Override

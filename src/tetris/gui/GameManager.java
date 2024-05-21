@@ -53,6 +53,7 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
             pieceController.setPiecePlaced(false);
             newPiece();
         }
+
     }
 
     @Override
