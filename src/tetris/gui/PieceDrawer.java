@@ -59,6 +59,7 @@ public class PieceDrawer implements IDrawable, IUpdatable {
 
         if (KeyHandler.isKeyPressed(KeyEvent.VK_ESCAPE)) {
             game.stopGameLoop();
+            MainMenu.showPauseLayer();
         }
     }
 

@@ -1,8 +1,10 @@
 package tetris.gui;
 
+import tetris.gui.loadResources.InitSoundtrack;
 import tetris.gui.panel.GamePanel;
 import tetris.gui.panel.InfoLayer;
 import tetris.gui.panel.MainLayer;
+import tetris.gui.panel.PausePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +19,12 @@ public class MainMenu extends JFrame {
     private static final String MAIN_PANEL = "MainPanel";
     private static final String INFO_PANEL = "InfoPanel";
     private static final String GAME_PANEL = "GamePanel";
+    private static final String PAUSE_PANEL = "PausePanel";
     public static final Game game = new Game();
     public static GamePanel gamePanel = new GamePanel();
     public static MainLayer mainPanel = new MainLayer();
     public static InfoLayer infoPanel = new InfoLayer();
+    public static PausePanel pausePanel = new PausePanel();
     private static CardLayout cardLayout;
     private static JPanel mainContainer;
     public MainMenu() {
@@ -28,6 +32,8 @@ public class MainMenu extends JFrame {
     }
 
     public static void showMainLayer() {
+        InitSoundtrack.GAME_SOUNDTRACK.stop();
+        InitSoundtrack.MENU_SOUNDTRACK.play();
         cardLayout.show(mainContainer, MAIN_PANEL);
     }
 
@@ -36,7 +42,14 @@ public class MainMenu extends JFrame {
     }
 
     public static void showGame() {
+        InitSoundtrack.MENU_SOUNDTRACK.stop();
+        InitSoundtrack.GAME_SOUNDTRACK.play();
         cardLayout.show(mainContainer, GAME_PANEL);
+    }
+
+    public static void showPauseLayer() {
+        InitSoundtrack.GAME_SOUNDTRACK.stop();
+        cardLayout.show(mainContainer, PAUSE_PANEL);
     }
 
     private void init() {
@@ -49,10 +62,12 @@ public class MainMenu extends JFrame {
 
         mainContainer = new JPanel();
         cardLayout = new CardLayout();
+        pausePanel = new PausePanel();
         mainContainer.setLayout(cardLayout);
 
         mainContainer.add(mainPanel, MAIN_PANEL);
         mainContainer.add(infoPanel, INFO_PANEL);
+        mainContainer.add(pausePanel, PAUSE_PANEL);
         mainContainer.add(gamePanel, GAME_PANEL);
 
         add(mainContainer);

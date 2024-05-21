@@ -1,6 +1,7 @@
 package tetris.gui.panel;
 
 import tetris.gui.MainMenu;
+import tetris.gui.loadResources.InitImage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,15 +43,27 @@ public class InfoLayer extends JPanel {
         constraints.gridy = 2;
         panel.add(back, constraints);
 
+        setOpaque(true);
+
         add(panel, BorderLayout.CENTER);
 
         setVisible(true);
     }
 
-    public static class BackHandler extends AbstractAction {
+    @Override
+    protected void paintComponent(Graphics g) {
+        Image background = InitImage.BACKGROUND.getImage();
+        super.paintComponent(g);
+        if (background != null) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+
+    private static class BackHandler extends AbstractAction {
         public BackHandler(String name) {
             putValue(AbstractAction.NAME, name);
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             MainMenu.showMainLayer();
