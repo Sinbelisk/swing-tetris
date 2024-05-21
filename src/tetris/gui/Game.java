@@ -40,7 +40,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
 
     @Override
     public void run() {
-        while (running) { // Cambiamos la condición de salida del bucle
+        while (running) {
             try {
                 Thread.sleep(DRAW_INTERVAL);
                 if (!paused){
