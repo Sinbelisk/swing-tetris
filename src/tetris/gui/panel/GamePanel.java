@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class GamePanel extends JPanel {
-
     private final MainMenu menu;
     private final Game game;
     private Bag bag = new Bag();

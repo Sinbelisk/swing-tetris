@@ -38,7 +38,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         this.addKeyListener(keyHandler);
         setFocusable(true);
     }
-    public void configureNextPieceBox(NextPieceBox nextPieceBox){
+    public void configureNextPieceBox(NextPieceBox nextPieceBox) {
         gameManager.addQueueObserver(nextPieceBox);
         nextPieceBox.setCurrentPiece(gameManager.bag.getNextPiece());
     }
