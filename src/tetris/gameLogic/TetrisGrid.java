@@ -83,4 +83,11 @@ public class TetrisGrid {
         }
     }
 
+    public boolean checkIfTopRowsAreOccupied(){
+        for (int i = 0; i < columns; i++) {
+            if (board[0][i] != 0) return true;
+        }
+        return false;
+    }
+
 }

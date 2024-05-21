@@ -17,6 +17,7 @@ public class PieceController implements IUpdatable, BagObserver {
     private final int currentDropDelay;
     private Tetromino currentPiece;
     private boolean piecePlaced;
+    private boolean gameOver;
 
     public PieceController(TetrisGrid grid) {
         this.grid = grid;
@@ -27,6 +28,10 @@ public class PieceController implements IUpdatable, BagObserver {
 
     @Override
     public void update() {
+        if (grid.checkIfTopRowsAreOccupied()) {
+            gameOver = true;
+        }
+
         if (dropTimer.hasElapsed()) {
             drop();
         }
@@ -89,7 +94,7 @@ public class PieceController implements IUpdatable, BagObserver {
                         currentPiece.setColliding(true);
                     }
 
-                    // Check if it collides with another piece currentShape.setColliding(true);
+                    // Check if it collides with another piece
                     if (board[newRow][newCol] != 0) {
                         if (deltaY > 0) {
                             currentPiece.setColliding(true);
@@ -116,6 +121,10 @@ public class PieceController implements IUpdatable, BagObserver {
 
     public void setPiecePlaced(boolean piecePlaced) {
         this.piecePlaced = piecePlaced;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     @Override

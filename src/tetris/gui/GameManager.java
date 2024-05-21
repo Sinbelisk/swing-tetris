@@ -7,6 +7,7 @@ import tetris.util.interfaces.PieceSubject;
 import tetris.util.interfaces.IDrawable;
 import tetris.util.interfaces.IUpdatable;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class GameManager implements IUpdatable, IDrawable, PieceSubject {
@@ -55,7 +56,17 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
             newPiece();
         }
 
+        if(!pieceController.isGameOver()){
+            gameOver();
+        }
+
     }
+
+    private void gameOver() {
+        String message = "¡HAS PERDIDO!, ¿Quieres guardar tu score?";
+        JOptionPane.showConfirmDialog(JOptionPane.getRootFrame(), message);
+    }
+
     @Override
     public void draw(Graphics2D g2d) {
         boardDrawer.drawOccupiedSlots(g2d);
