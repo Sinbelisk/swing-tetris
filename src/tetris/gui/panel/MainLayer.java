@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import static tetris.gui.MainMenu.game;
 
 public class MainLayer extends JPanel {
+    private final MainMenu menu;
     public static final String START_TEXT = "Start";
     public static final String SCORES_TEXT = "Scores";
     public static final String OPTIONS_TEXT = "Options";
@@ -20,7 +21,8 @@ public class MainLayer extends JPanel {
     public JButton options;
     public JButton quit;
 
-    public MainLayer() {
+    public MainLayer(MainMenu menu) {
+        this.menu = menu;
         init();
     }
 
@@ -86,7 +88,7 @@ public class MainLayer extends JPanel {
         }
     }
 
-    private static class MainMenuHandler extends AbstractAction {
+    private class MainMenuHandler extends AbstractAction {
         public MainMenuHandler(String name) {
             putValue(AbstractAction.NAME, name);
         }
@@ -94,12 +96,12 @@ public class MainLayer extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (getValue(AbstractAction.NAME) == START_TEXT) {
-                MainMenu.showGame();
+                menu.showGame();
                 game.startGameLoop();
             } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {
 
             } else if (getValue(AbstractAction.NAME) == OPTIONS_TEXT) {
-                MainMenu.showOptionPanel();
+                menu.showOptionPanel();
             } else if (getValue(AbstractAction.NAME) == QUIT_TEXT) {
                 System.exit(0);
             }

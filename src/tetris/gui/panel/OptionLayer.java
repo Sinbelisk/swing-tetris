@@ -9,13 +9,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class OptionLayer extends JPanel {
+    private MainMenu menu;
     public static final String VOLUME_OPTIONS_TEXT = "Volume Options";
     public static final String CONTROLS_TEXT = "Controls";
     public static final String BACK_TEXT = "Back";
-    public static JSlider volumeSlider;
-    public static JButton back;
+    public JSlider volumeSlider;
+    public JButton back;
 
-    public OptionLayer() {
+    public OptionLayer(MainMenu menu) {
+        this.menu = menu;
         init();
     }
 
@@ -112,14 +114,14 @@ public class OptionLayer extends JPanel {
         }
     }
 
-    private static class BackHandler extends AbstractAction {
+    private class BackHandler extends AbstractAction {
         public BackHandler(String name) {
             putValue(AbstractAction.NAME, name);
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            MainMenu.showMainLayer();
+            menu.showMainLayer();
         }
     }
 }
