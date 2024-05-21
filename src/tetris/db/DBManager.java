@@ -36,8 +36,8 @@ public class DBManager {
     }
 
     public static void main(String[] args) {
-        deleteFrom();
-        //insertInto("Javier Milei", 99999);
+        //deleteFrom();
+        insertInto("Javier Milei", 99999);
     }
 
     public static ArrayList<String[]> selectFrom() {
