@@ -1,5 +1,8 @@
 package tetris.gui;
 
+import tetris.gameLogic.TetrisGrid;
+import tetris.gameLogic.tetrominos.Bag;
+import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.IUpdatable;
 import tetris.gui.events.KeyEvents.KeyHandler;
 
@@ -7,14 +10,29 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel implements Runnable, IUpdatable {
-    private static final int WIDTH = 265;
-    private static final int HEIGHT = 535;
+    public static final int ROWS = 20;
+    public static final int COLUMNS = 10;
     public static final int DRAW_INTERVAL = 1000/60;
     private Thread gameLoop;
-    private GameManager gameManager = new GameManager();
+    private final Bag bag = new Bag();
+    private final TetrisGrid grid = new TetrisGrid(ROWS, COLUMNS);
+    private final BoardDrawer boardDrawer;
+    private final PieceDrawer pieceDrawer;
+    private final PieceController pieceController;
+    private final KeyHandler keyHandler;
+    private final GameManager gameManager;
 
     public Game() {
-        this.addKeyListener(new KeyHandler());
+        Tetromino firstPiece = bag.getNewPiece();
+
+        this.boardDrawer = new BoardDrawer(grid);
+        this.pieceDrawer = new PieceDrawer(firstPiece);
+        this.pieceController = new PieceController(grid, bag, firstPiece);
+        this.keyHandler = new KeyHandler(pieceController);
+
+        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController);
+
+        this.addKeyListener(keyHandler);
         setFocusable(true);
     }
 
@@ -42,9 +60,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
 
     @Override
     public void update() {
-        if (!hasFocus()){
-            requestFocus();
-        }
+        requestFocus();
         gameManager.update();
     }
 

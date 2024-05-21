@@ -1,36 +1,37 @@
 package tetris.gui.events.KeyEvents;
 
+import tetris.gui.PieceController;
+
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.HashMap;
-import java.util.Map;
-public class KeyHandler implements KeyListener {
-    // Esta clase es para gestionar eventos de teclado.
-    private static final Map<Integer, Boolean> keyStateMap = new HashMap<>();
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+public class KeyHandler extends KeyAdapter {
+    private final PieceController pieceController;
+
+    public KeyHandler(PieceController pieceController) {
+        this.pieceController = pieceController;
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
-        synchronized (keyStateMap) {
-            keyStateMap.put(e.getKeyCode(), true);
-        }
+        handleKeyPress(e.getKeyCode());
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        synchronized (keyStateMap) {
-            keyStateMap.put(e.getKeyCode(), false);
-        }
-    }
-
-    public static boolean isKeyPressed(int keyCode) {
-        synchronized (keyStateMap) {
-            return keyStateMap.getOrDefault(keyCode, false);
+    private void handleKeyPress(int keyCode) {
+        System.out.println(keyCode);
+        switch (keyCode) {
+            case KeyEvent.VK_A:
+                pieceController.move(-1, 0);
+                break;
+            case KeyEvent.VK_D:
+                pieceController.move(1,0);
+                break;
+            case KeyEvent.VK_S:
+                pieceController.move(0, 1);
+                break;
+            case KeyEvent.VK_R:
+                pieceController.rotate();
+                break;
         }
     }
 }
-
 

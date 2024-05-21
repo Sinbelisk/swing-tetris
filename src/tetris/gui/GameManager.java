@@ -1,9 +1,9 @@
 package tetris.gui;
 
+import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.IDrawable;
 import tetris.util.interfaces.IUpdatable;
 import tetris.gameLogic.TetrisGrid;
-import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Bag;
 
 import java.awt.*;
@@ -11,14 +11,15 @@ import java.awt.*;
 public class GameManager implements IUpdatable, IDrawable {
     public static final int ROWS = 20;
     public static final int COLUMNS = 10;
-    public static final int BASE_MOVE_DELAY = 150;
-    private final Bag BAG = new Bag();
-    private final TetrisGrid GRID = new TetrisGrid(ROWS, COLUMNS);
-    private final BoardDrawer BOARD_DRAWER = new BoardDrawer(GRID);
-    private final PieceDrawer PIECE_DRAWER = new PieceDrawer(GRID, BAG, new Timer(BASE_MOVE_DELAY));
+    private final BoardDrawer boardDrawer;
+    private final PieceDrawer pieceDrawer;
+    private final PieceController pieceController;
 
-    public GameManager() {}
-
+    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController) {
+        this.boardDrawer = boardDrawer;
+        this.pieceDrawer = pieceDrawer;
+        this.pieceController = pieceController;
+    }
     public static Color getPieceColor(int pieceID) {
         return switch (pieceID) {
             case 1 -> Color.CYAN;
@@ -31,18 +32,16 @@ public class GameManager implements IUpdatable, IDrawable {
             default -> Color.BLACK;
         };
     }
-
     @Override
     public void update() {
-        BOARD_DRAWER.update();
-        PIECE_DRAWER.update();
+        boardDrawer.update();
+        pieceController.update();
     }
 
     @Override
     public void draw(Graphics2D g2d) {
-        BOARD_DRAWER.drawOccupiedSlots(g2d);
-        PIECE_DRAWER.draw(g2d);
-
-        BOARD_DRAWER.drawGrid(g2d);
+        boardDrawer.drawOccupiedSlots(g2d);
+        pieceDrawer.draw(g2d);
+        boardDrawer.drawGrid(g2d);
     }
 }
