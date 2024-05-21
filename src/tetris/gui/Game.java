@@ -29,7 +29,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         this.boardDrawer = new BoardDrawer(grid);
         this.pieceController = new PieceController(grid);
         this.pieceDrawer = new PieceDrawer();
-        this.keyHandler = new KeyHandler(pieceController);
+        this.keyHandler = new KeyHandler(pieceController, this);
 
         this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager);
 
@@ -59,6 +59,14 @@ public class Game extends JPanel implements Runnable, IUpdatable {
             running = true;
             gameLoop.start();
         }
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isPaused() {
+        return paused;
     }
 
     public void stopGameLoop() {
