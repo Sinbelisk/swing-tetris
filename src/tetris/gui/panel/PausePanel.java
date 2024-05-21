@@ -8,12 +8,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class PausePanel extends JPanel {
+    private final MainMenu menu;
     public static final String MENU_PAUSE_NAME = "Pause";
     public static final String CONTINUE_TEXT = "Continue";
     public static final String EXIT_TEXT = "Exit";
-    public static JButton continue_button;
-    public static JButton exit;
-    public PausePanel() {
+    public JButton continue_button;
+    public JButton exit;
+    public PausePanel(MainMenu menu) {
+        this.menu = menu;
+        init();
+    }
+    private void init() {
         setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
@@ -61,7 +66,7 @@ public class PausePanel extends JPanel {
         }
     }
 
-    private static class PauseHandler extends AbstractAction {
+    private class PauseHandler extends AbstractAction {
         public PauseHandler(String name) {
             putValue(AbstractAction.NAME, name);
         }
@@ -69,9 +74,9 @@ public class PausePanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (getValue(AbstractAction.NAME) == CONTINUE_TEXT) {
-                MainMenu.showGame();
+                menu.showGame();
             } else if (getValue(AbstractAction.NAME) == EXIT_TEXT) {
-                MainMenu.showMainLayer();
+                menu.showMainLayer();
             }
         }
     }

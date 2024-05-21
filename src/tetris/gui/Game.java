@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel implements Runnable, IUpdatable {
+    private MainMenu menu;
     public static final int ROWS = 20;
     public static final int COLUMNS = 10;
     public static final int DRAW_INTERVAL = 1000 / 60;
@@ -74,7 +75,7 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     }
     public void pauseGameLoop() {
         paused = true;
-        MainMenu.showPauseLayer();
+        menu.showPauseLayer();
     }
 
     public void resumeGameLoop() {

@@ -6,7 +6,6 @@ import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.IUpdatable;
 import tetris.util.interfaces.Observer;
 
-
 public class PieceController implements IUpdatable, Observer {
     public static final int BASE_MOVE_DELAY = 75;
     private static final int BASE_DROP_DELAY = 900;
