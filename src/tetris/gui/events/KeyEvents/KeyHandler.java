@@ -17,7 +17,6 @@ public class KeyHandler extends KeyAdapter {
     }
 
     private void handleKeyPress(int keyCode) {
-        System.out.println(keyCode);
         switch (keyCode) {
             case KeyEvent.VK_A:
                 pieceController.move(-1, 0);
@@ -30,6 +29,9 @@ public class KeyHandler extends KeyAdapter {
                 break;
             case KeyEvent.VK_R:
                 pieceController.rotate();
+                break;
+            case KeyEvent.VK_W:
+                pieceController.move(0, -1);
                 break;
         }
     }

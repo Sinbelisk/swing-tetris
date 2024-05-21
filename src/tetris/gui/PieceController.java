@@ -2,7 +2,6 @@ package tetris.gui;
 
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
-import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.IUpdatable;
 import tetris.util.interfaces.Observer;
@@ -29,9 +28,8 @@ public class PieceController implements IUpdatable, Observer {
 
     @Override
     public void update() {
-        piecePlaced = false;
         if (dropTimer.hasElapsed()) {
-            move(0, 1);
+            drop();
         }
 
         if (currentPiece.isColliding() && placementTimer.hasElapsed()) {
@@ -60,8 +58,10 @@ public class PieceController implements IUpdatable, Observer {
     }
 
     public void move(int x, int y) {
-        if (canMove(currentPiece, x, y) && moveTimer.hasElapsed()) {
-            currentPiece.move(x, y);
+        if (moveTimer.hasElapsed()) {
+            if (canMove(currentPiece, x, y)) {
+                currentPiece.move(x, y);
+            }
         }
     }
 
@@ -73,7 +73,7 @@ public class PieceController implements IUpdatable, Observer {
     }
 
     private void drop() {
-        if (canMove(currentPiece, 0, 1)) currentPiece.move(0, 1);
+        move(0, 1);
     }
 
     public boolean canMove(Tetromino currentShape, int deltaX, int deltaY) {
@@ -107,19 +107,24 @@ public class PieceController implements IUpdatable, Observer {
     }
 
     private boolean insideBounds(int newRow, int newColumn) {
-        return newRow >= 0 && newRow < GameManager.ROWS && newColumn >= 0 && newColumn < GameManager.COLUMNS;
+        return newRow >= 0 && newRow < Game.ROWS && newColumn >= 0 && newColumn < Game.COLUMNS;
     }
 
     private boolean touchingBottom(int newRow) { // checks if the row is touching the bottom of the board or another piece
-        return newRow == GameManager.ROWS - 1;
+        return newRow == Game.ROWS - 1;
     }
 
     public boolean isPiecePlaced() {
         return piecePlaced;
     }
 
+    public void setPiecePlaced(boolean piecePlaced) {
+        this.piecePlaced = piecePlaced;
+    }
+
     @Override
     public void refreshPiece(Tetromino newPiece) {
         this.currentPiece = newPiece;
+        grid.printDebug();
     }
 }

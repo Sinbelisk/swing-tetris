@@ -10,8 +10,6 @@ import tetris.util.interfaces.Subject;
 import java.awt.*;
 
 public class GameManager implements IUpdatable, IDrawable, Subject {
-    public static final int ROWS = 20;
-    public static final int COLUMNS = 10;
     private final BoardDrawer boardDrawer;
     private Tetromino currentPiece;
     private final PieceDrawer pieceDrawer;
@@ -46,11 +44,14 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
     @Override
     public void update() {
         boardDrawer.update();
-        pieceController.update();
+
 
         if(pieceController.isPiecePlaced()){
+            pieceController.setPiecePlaced(false);
             newPiece();
         }
+
+        pieceController.update();
     }
 
     @Override
