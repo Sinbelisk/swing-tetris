@@ -42,13 +42,10 @@ public class PieceController implements IUpdatable, Observer {
         int[][] currentShape = piece.getCurrentShape();
         int y = piece.getPosX();
         int x = piece.getPosY();
-        System.out.println(x + "|" + y);
-        System.out.println();
 
         for (int i = 0; i < currentShape.length; i++) {
             for (int j = 0; j < currentShape[i].length; j++) {
                 if (currentShape[i][j] != 0) {
-                    System.out.println((x + i) + "|" + (y + j));
                     grid.setCell(x + i, y + j, piece.getPieceID());
                 }
             }
@@ -125,6 +122,5 @@ public class PieceController implements IUpdatable, Observer {
     @Override
     public void refreshPiece(Tetromino newPiece) {
         this.currentPiece = newPiece;
-        grid.printDebug();
     }
 }

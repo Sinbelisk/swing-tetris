@@ -12,12 +12,14 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
     private final BoardDrawer boardDrawer;
     private final PieceDrawer pieceDrawer;
     private final PieceController pieceController;
+    private final ScoreManager scoreManager;
     private final Bag bag = new Bag();
 
-    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController) {
+    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager) {
         this.boardDrawer = boardDrawer;
         this.pieceDrawer = pieceDrawer;
         this.pieceController = pieceController;
+        this.scoreManager = scoreManager;
 
         addObserver(pieceDrawer);
         addObserver(pieceController);
@@ -44,15 +46,13 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
 
     @Override
     public void update() {
-        boardDrawer.update();
-
+        pieceController.update();
+        scoreManager.update();
 
         if (pieceController.isPiecePlaced()) {
             pieceController.setPiecePlaced(false);
             newPiece();
         }
-
-        pieceController.update();
     }
 
     @Override

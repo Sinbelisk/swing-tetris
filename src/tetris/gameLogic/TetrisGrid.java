@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class TetrisGrid {
     private int[][] board;
-    private int rows;
-    private int columns;
+    private final int rows;
+    private final int columns;
     public TetrisGrid(int rows, int columns){
         this.rows = rows;
         this.columns = columns;
@@ -81,14 +81,6 @@ public class TetrisGrid {
                 board[i][j] = random.nextInt(0, 7);
             }
         }
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public int getColumns() {
-        return columns;
     }
 
 }
