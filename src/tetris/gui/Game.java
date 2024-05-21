@@ -17,7 +17,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     public static final int SIZE = 25;
     public static final int DRAW_INTERVAL = 1000 / 60;
     private final TetrisGrid grid = new TetrisGrid(ROWS, COLUMNS);
-    private final Bag bag = new Bag();
     private final Score score = new Score(1);
     private final BoardDrawer boardDrawer;
     private final PieceDrawer pieceDrawer;
@@ -34,14 +33,14 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         this.pieceDrawer = new PieceDrawer();
         this.keyHandler = new KeyHandler(pieceController, this);
 
-        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager, bag);
+        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager);
 
         this.addKeyListener(keyHandler);
         setFocusable(true);
     }
-
     public void configureNextPieceBox(NextPieceBox nextPieceBox){
-        nextPieceBox.setBag(bag);
+        gameManager.addQueueObserver(nextPieceBox);
+        nextPieceBox.setCurrentPiece(gameManager.bag.getNextPiece());
     }
     @Override
     public void run() {

@@ -1,8 +1,5 @@
 package tetris.gui.panel;
 
-import tetris.gameLogic.tetrominos.Bag;
-import tetris.gameLogic.tetrominos.TPiece;
-import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.NextPieceBox;
