@@ -38,13 +38,13 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         this.addKeyListener(keyHandler);
         setFocusable(true);
     }
-    public void configureNextPieceBox(NextPieceBox nextPieceBox){
+    public void configureNextPieceBox(NextPieceBox nextPieceBox) {
         gameManager.addQueueObserver(nextPieceBox);
         nextPieceBox.setCurrentPiece(gameManager.bag.getNextPiece());
     }
     @Override
     public void run() {
-        while (running) { // Cambiamos la condición de salida del bucle
+        while (running) {
             try {
                 Thread.sleep(DRAW_INTERVAL);
                 if (!paused){
