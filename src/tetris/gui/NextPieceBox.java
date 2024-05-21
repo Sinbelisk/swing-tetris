@@ -7,10 +7,12 @@ import tetris.util.interfaces.Observer;
 import javax.swing.*;
 import java.awt.*;
 
-public class ScoreBox extends JPanel implements Observer {
+public class NextPieceBox extends JPanel implements Observer {
     private static final int gridSize = 6;
+    private final Bag bag;
     private Tetromino currentPiece;
-    public ScoreBox() {
+    public NextPieceBox(Bag bag) {
+        this.bag = bag;
         setSize(Game.SIZE * gridSize, Game.SIZE * gridSize);
         setBackground(Color.black);
     }

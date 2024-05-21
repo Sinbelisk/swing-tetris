@@ -14,6 +14,7 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
     private final PieceController pieceController;
     private final ScoreManager scoreManager;
     private final Bag bag = new Bag();
+    private final NextPieceBox nextPieceBox = new NextPieceBox(bag);
 
     public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager) {
         this.boardDrawer = boardDrawer;
