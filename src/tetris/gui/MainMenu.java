@@ -12,7 +12,7 @@ import java.awt.*;
 public class MainMenu extends JFrame {
     public static final String APP_NAME = "Tetris With Swing";
     private static final ImageIcon ICON = new ImageIcon("resources/images/icon.png");
-    public static final int MAIN_MENU_WIDTH = 265;
+    public static final int MAIN_MENU_WIDTH = 510;
     public static final int MAIN_MENU_LENGTH = 535;
     private static final String MAIN_PANEL = "MainPanel";
     private static final String OPTION_PANEL = "OptionPanel";
