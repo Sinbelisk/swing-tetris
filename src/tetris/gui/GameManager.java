@@ -1,17 +1,15 @@
 package tetris.gui;
 
+import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
 import tetris.util.interfaces.IDrawable;
 import tetris.util.interfaces.IUpdatable;
-import tetris.gameLogic.TetrisGrid;
-import tetris.gameLogic.tetrominos.Bag;
 import tetris.util.interfaces.Subject;
 
 import java.awt.*;
 
 public class GameManager implements IUpdatable, IDrawable, Subject {
     private final BoardDrawer boardDrawer;
-    private Tetromino currentPiece;
     private final PieceDrawer pieceDrawer;
     private final PieceController pieceController;
     private final Bag bag = new Bag();
@@ -25,10 +23,7 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
         addObserver(pieceController);
         newPiece();
     }
-    public void newPiece() {
-        this.currentPiece = bag.getNewPiece();
-        notifyObservers(currentPiece);
-    }
+
     public static Color getPieceColor(int pieceID) {
         return switch (pieceID) {
             case 1 -> Color.CYAN;
@@ -41,12 +36,18 @@ public class GameManager implements IUpdatable, IDrawable, Subject {
             default -> Color.BLACK;
         };
     }
+
+    public void newPiece() {
+        Tetromino currentPiece = bag.getNewPiece();
+        notifyObservers(currentPiece);
+    }
+
     @Override
     public void update() {
         boardDrawer.update();
 
 
-        if(pieceController.isPiecePlaced()){
+        if (pieceController.isPiecePlaced()) {
             pieceController.setPiecePlaced(false);
             newPiece();
         }
