@@ -2,32 +2,31 @@ package tetris.gui;
 
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
-import tetris.util.interfaces.Observer;
+import tetris.util.interfaces.BagObserver;
+import tetris.util.interfaces.BagQueueObserver;
+import tetris.util.interfaces.PieceSubject;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NextPieceBox extends JPanel implements Observer {
+public class NextPieceBox extends JPanel implements BagQueueObserver {
     private static final int gridSize = 6;
-    private final Bag bag;
     private Tetromino currentPiece;
-    public NextPieceBox(Bag bag) {
-        this.bag = bag;
+    public NextPieceBox() {
         setSize(Game.SIZE * gridSize, Game.SIZE * gridSize);
-        setBackground(Color.black);
+        setOpaque(false);
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        drawPiece(g2d, currentPiece);
+        if(currentPiece != null) drawPiece(g2d, currentPiece);
         drawString(g2d);
     }
-
     public void drawString(Graphics2D g2d){
         String text = "Next piece:";
         g2d.setColor(Color.WHITE);
-        g2d.drawString("Next Piece:", (getWidth()-text.length())/3, 10);
+        g2d.drawString("Next Piece:", (getWidth()-text.length())/2, 10);
     }
     public void drawPiece(Graphics2D g2d, Tetromino piece) {
         g2d.setStroke(new BasicStroke(3));
@@ -46,7 +45,6 @@ public class NextPieceBox extends JPanel implements Observer {
                 }
             }
         }
-
         // Horizontal lines
         g2d.setColor(Color.BLACK);
         for (int i = 0; i <= shape.length; i++) {
@@ -58,9 +56,12 @@ public class NextPieceBox extends JPanel implements Observer {
             g2d.drawLine(offsetX + j * Game.SIZE, offsetY, offsetX + j * Game.SIZE, offsetY + pieceHeight);
         }
     }
-
+    public void setCurrentPiece(Tetromino piece){
+        this.currentPiece = piece;
+    }
     @Override
-    public void refreshPiece(Tetromino newPiece) {
-        this.currentPiece = newPiece;
+    public void notifyNextPieceChange(Tetromino tetromino) {
+        this.currentPiece = tetromino;
+        repaint();
     }
 }

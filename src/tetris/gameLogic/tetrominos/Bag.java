@@ -39,15 +39,22 @@ public class Bag {
 
     private void resetQueue() {
         bagQueue.clear();
-        bagQueue.addAll(pieces);
+        for (int i = 1; i < pieces.size(); i++) {
+            bagQueue.add(pieces.get(i));
+        }
+
     }
 
     public void debugPlaceAtZero(){
         this.currentPiece.startingX = 0;
         this.currentPiece.startingY = 0;
     }
+    public Tetromino getCurrentPiece(){
+        return currentPiece;
+    }
 
-    public Queue<Tetromino> getBagQueue() {
-        return bagQueue;
+    public Tetromino getNextPiece(){
+        if(!bagQueue.isEmpty()) return bagQueue.poll();
+        return null;
     }
 }

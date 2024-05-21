@@ -2,7 +2,9 @@ package tetris.gui;
 
 import tetris.gameLogic.Score;
 import tetris.gameLogic.TetrisGrid;
+import tetris.gameLogic.tetrominos.Bag;
 import tetris.gui.events.KeyEvents.KeyHandler;
+import tetris.gui.panel.GamePanel;
 import tetris.util.interfaces.IUpdatable;
 
 import javax.swing.*;
@@ -25,7 +27,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private Thread gameLoop;
     private volatile boolean running = false;
     private volatile boolean paused = false;
-
     public Game() {
         this.boardDrawer = new BoardDrawer(grid);
         this.pieceController = new PieceController(grid);
@@ -37,7 +38,10 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         this.addKeyListener(keyHandler);
         setFocusable(true);
     }
-
+    public void configureNextPieceBox(NextPieceBox nextPieceBox){
+        gameManager.addQueueObserver(nextPieceBox);
+        nextPieceBox.setCurrentPiece(gameManager.bag.getNextPiece());
+    }
     @Override
     public void run() {
         while (running) {
@@ -69,7 +73,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     public boolean isPaused() {
         return paused;
     }
-
     public void stopGameLoop() {
         //Stop Game
         if (gameLoop != null) {

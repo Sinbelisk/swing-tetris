@@ -3,10 +3,10 @@ package tetris.gui;
 import tetris.gameLogic.TetrisGrid;
 import tetris.gameLogic.Timer;
 import tetris.gameLogic.tetrominos.Tetromino;
+import tetris.util.interfaces.BagObserver;
 import tetris.util.interfaces.IUpdatable;
-import tetris.util.interfaces.Observer;
 
-public class PieceController implements IUpdatable, Observer {
+public class PieceController implements IUpdatable, BagObserver {
     public static final int BASE_MOVE_DELAY = 75;
     private static final int BASE_DROP_DELAY = 900;
     private static final int PLACEMENT_DELAY = 120;
