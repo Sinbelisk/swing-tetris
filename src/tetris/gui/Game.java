@@ -82,12 +82,10 @@ public class Game extends JPanel implements Runnable, IUpdatable {
 
     public void pauseGameLoop() {
         paused = true;
-        menu.showPauseLayer();
     }
 
     public void resumeGameLoop() {
         paused = false;
-        menu.showGame();
     }
 
     @Override

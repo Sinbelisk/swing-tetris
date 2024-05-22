@@ -36,7 +36,7 @@ public class OptionLayer extends JPanel {
         Dimension buttonSize = new Dimension(200, 50);
         back.setPreferredSize(buttonSize);
 
-        volumeSlider = new JSlider(0, 100, 0);
+        volumeSlider = new JSlider(0, 100, 100);
         volumeSlider.addChangeListener(e -> {
             float volume = volumeSlider.getValue() / 100.0f;
             InitSoundtrack.MENU_SOUNDTRACK.setVolume(volume);
@@ -60,7 +60,7 @@ public class OptionLayer extends JPanel {
         addControlMapping(controlsPanel, controlConstraints, "D", "Move Right", 1);
         addControlMapping(controlsPanel, controlConstraints, "S", "Lower", 2);
         addControlMapping(controlsPanel, controlConstraints, "R", "Rotate", 3);
-        addControlMapping(controlsPanel, controlConstraints, "ESC", "Pause", 4);
+        addControlMapping(controlsPanel, controlConstraints, "ESC", "Fast Pause", 4);
 
         GridBagConstraints constraints = new GridBagConstraints();
 
