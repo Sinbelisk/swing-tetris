@@ -5,6 +5,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DBManager {
+    public static int createDatabaseIfNotExists(){
+        Connection connection = new Connection();
+        Statement stm = null;
+        try (java.sql.Connection cn = connection.connect()) {
+            stm = cn.createStatement();
+            String sqlInstruction = "CREATE TABLE IF NOT EXISTS scores (userName VARCHAR(25), score NUMERIC);";
+            stm.execute(sqlInstruction);
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
     public static int insertInto(String name, Integer score) {
         Connection connection = new Connection();
         Statement stm = null;
