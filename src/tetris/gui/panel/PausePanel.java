@@ -82,7 +82,6 @@ public class PausePanel extends JPanel {
             } else if (getValue(AbstractAction.NAME) == EXIT_TEXT) {
                 menu.showMainLayer();
                 game.stopGameLoop();
-                MainMenu.game = new Game();
             }
         }
     }
