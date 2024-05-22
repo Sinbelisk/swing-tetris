@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel implements Runnable, IUpdatable {
-    private MainMenu menu;
+    protected final MainMenu menu;
     public static final int ROWS = 20;
     public static final int COLUMNS = 10;
     public static final int SIZE = 25;
@@ -27,13 +27,14 @@ public class Game extends JPanel implements Runnable, IUpdatable {
     private Thread gameLoop;
     private volatile boolean running = false;
     private volatile boolean paused = false;
-    public Game() {
+    public Game(MainMenu mainMenu) {
+        this.menu = mainMenu;
         this.boardDrawer = new BoardDrawer(grid);
         this.pieceController = new PieceController(grid);
         this.pieceDrawer = new PieceDrawer();
         this.keyHandler = new KeyHandler(pieceController, this);
 
-        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager);
+        this.gameManager = new GameManager(boardDrawer, pieceDrawer, pieceController, scoreManager, this);
 
         this.addKeyListener(keyHandler);
         setFocusable(true);
@@ -56,7 +57,6 @@ public class Game extends JPanel implements Runnable, IUpdatable {
             }
         }
     }
-
     public void startGameLoop() {
         //start game
         if (gameLoop == null || !running) {
@@ -66,15 +66,10 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         }
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-
     public boolean isPaused() {
         return paused;
     }
     public void stopGameLoop() {
-        //Stop Game
         if (gameLoop != null) {
             try {
                 running = false;

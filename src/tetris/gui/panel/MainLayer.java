@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.Main;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitSoundtrack;
@@ -11,7 +12,7 @@ import java.awt.event.ActionEvent;
 
 public class MainLayer extends JPanel {
     private final MainMenu menu;
-    private final Game game;
+    private Game game;
     public static final String START_TEXT = "Start";
     public static final String SCORES_TEXT = "Scores";
     public static final String OPTIONS_TEXT = "Options";

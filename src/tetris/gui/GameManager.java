@@ -1,34 +1,36 @@
 package tetris.gui;
 
-import tetris.Main;
 import tetris.db.DBManager;
 import tetris.gameLogic.tetrominos.Bag;
 import tetris.gameLogic.tetrominos.Tetromino;
-import tetris.util.interfaces.BagQueueObserver;
-import tetris.util.interfaces.PieceSubject;
 import tetris.util.interfaces.IDrawable;
 import tetris.util.interfaces.IUpdatable;
+import tetris.util.interfaces.PieceSubject;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameManager implements IUpdatable, IDrawable, PieceSubject {
-    private final BoardDrawer boardDrawer;
-    private final PieceDrawer pieceDrawer;
-    private final PieceController pieceController;
-    private final ScoreManager scoreManager;
+    public final PieceDrawer pieceDrawer;
+    public final ScoreManager scoreManager;
     public final Bag bag;
-    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager) {
+    private final Game game;
+    private final BoardDrawer boardDrawer;
+    private final PieceController pieceController;
+
+    public GameManager(BoardDrawer boardDrawer, PieceDrawer pieceDrawer, PieceController pieceController, ScoreManager scoreManager, Game game) {
         this.boardDrawer = boardDrawer;
         this.pieceDrawer = pieceDrawer;
         this.pieceController = pieceController;
         this.scoreManager = scoreManager;
         this.bag = new Bag();
+        this.game = game;
 
         addObserver(pieceDrawer);
         addObserver(pieceController);
         newPiece();
     }
+
     public static Color getPieceColor(int pieceID) {
         return switch (pieceID) {
             case 1 -> Color.CYAN;
@@ -58,23 +60,25 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
             newPiece();
         }
 
-        if(pieceController.isGameOver()){
+        if (pieceController.isGameOver()) {
+            pieceController.setGameOver(false);
             gameOver();
         }
     }
 
     private void gameOver() {
-        String gameOverMessage = "GAME OVER!, Do you want to save your score?";
-        int answer = JOptionPane.showConfirmDialog(JOptionPane.getRootFrame(), gameOverMessage);
-
-        if (answer == 0) {
-            String inputUserMessage = "Insert your User Name";
-            String userName = JOptionPane.showInputDialog(inputUserMessage);
-
-            DBManager.insertInto(userName, 0);
-        } else if (answer == 1) {
-
+        String message = "¡YOU LOST!, Do you want to save your score?";
+        int option = JOptionPane.showConfirmDialog(JOptionPane.getRootFrame(), message);
+        if (option == JOptionPane.YES_OPTION) {
+            String name = JOptionPane.showInputDialog("Insert name");
+            if (name != null && !name.trim().isEmpty()) {
+                int score = scoreManager.score.getScore();
+                DBManager.insertInto(name, score);
+            }
         }
+        game.menu.showMainLayer();
+        game.menu.reset();
+        game.stopGameLoop();
     }
 
     @Override
@@ -82,9 +86,5 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
         boardDrawer.drawOccupiedSlots(g2d);
         pieceDrawer.draw(g2d);
         boardDrawer.drawGrid(g2d);
-    }
-
-    public BoardDrawer getBoardDrawer() {
-        return this.boardDrawer;
     }
 }

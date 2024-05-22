@@ -16,7 +16,7 @@ public class MainMenu extends JFrame {
     private static final String DB_PANEL = "DBPanel";
     private static final String GAME_PANEL = "GamePanel";
     private static final String PAUSE_PANEL = "PausePanel";
-    public static Game game = new Game();
+    public Game game = new Game(this);
     public GamePanel gamePanel = new GamePanel(this, game);
     public MainLayer mainPanel = new MainLayer(this, game);
     public OptionLayer infoPanel = new OptionLayer(this);
@@ -44,6 +44,11 @@ public class MainMenu extends JFrame {
         cardLayout.show(mainContainer, GAME_PANEL);
     }
 
+    public void reset(){
+        game = new Game(new MainMenu());
+        this.dispose();
+    }
+
     public void showDBLayer() {
         cardLayout.show(mainContainer, DB_PANEL);
     }
@@ -52,7 +57,6 @@ public class MainMenu extends JFrame {
         InitSoundtrack.GAME_SOUNDTRACK.stop();
         cardLayout.show(mainContainer, PAUSE_PANEL);
     }
-
     private void init() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle(APP_NAME);

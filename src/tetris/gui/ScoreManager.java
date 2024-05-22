@@ -5,7 +5,7 @@ import tetris.gameLogic.TetrisGrid;
 import tetris.util.interfaces.IUpdatable;
 
 public class ScoreManager implements IUpdatable {
-    private final Score score;
+    protected final Score score;
     private final TetrisGrid grid;
 
     public ScoreManager(Score score, TetrisGrid grid){
