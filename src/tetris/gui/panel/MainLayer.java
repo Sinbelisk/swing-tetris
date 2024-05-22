@@ -17,6 +17,10 @@ public class MainLayer extends JPanel {
     public static final String SCORES_TEXT = "Scores";
     public static final String OPTIONS_TEXT = "Options";
     public static final String QUIT_TEXT = "Quit";
+    public static final String PABLO_NAME = "Pablo Martínez Pedrosa";
+    public static final String RAFAEL_NAME = "Rafael Francisco Jimenez Rayo";
+    public static final String PEDRO_NAME = "Pedro Garcia Odero";
+    public static final String NAMES = PABLO_NAME + " | " + RAFAEL_NAME + " | " + PEDRO_NAME;
     public JButton start;
     public JButton scores;
     public JButton options;
@@ -39,6 +43,14 @@ public class MainLayer extends JPanel {
         label.setForeground(Color.WHITE);
         panel.add(label);
 
+        JLabel pabloLabel = new JLabel(PABLO_NAME);
+        JLabel rafaelLabel = new JLabel(RAFAEL_NAME);
+        JLabel pedroLabel = new JLabel(PEDRO_NAME);
+
+        pabloLabel.setForeground(Color.WHITE);
+        rafaelLabel.setForeground(Color.WHITE);
+        pedroLabel.setForeground(Color.WHITE);
+
         start = new JButton(new MainMenuHandler(START_TEXT));
         scores = new JButton(new MainMenuHandler(SCORES_TEXT));
         options = new JButton(new MainMenuHandler(OPTIONS_TEXT));
@@ -50,28 +62,30 @@ public class MainLayer extends JPanel {
         options.setPreferredSize(buttonSize);
         quit.setPreferredSize(buttonSize);
 
-        panel.add(start);
-        panel.add(scores);
-        panel.add(options);
-        panel.add(quit);
-
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
-        constraints.gridy = 1;
         constraints.insets = new Insets(10, 0, 0, 0);
+
+        constraints.gridy = 1;
         panel.add(start, constraints);
 
-        constraints.gridx = 0;
         constraints.gridy = 2;
         panel.add(scores, constraints);
 
-        constraints.gridx = 0;
         constraints.gridy = 3;
         panel.add(options, constraints);
 
-        constraints.gridx = 0;
         constraints.gridy = 4;
         panel.add(quit, constraints);
+
+        constraints.gridy = 5;
+        panel.add(pabloLabel, constraints);
+
+        constraints.gridy = 6;
+        panel.add(rafaelLabel, constraints);
+
+        constraints.gridy = 7;
+        panel.add(pedroLabel, constraints);
 
         add(panel, BorderLayout.CENTER);
 
@@ -84,7 +98,6 @@ public class MainLayer extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Image background = InitImage.BACKGROUND.getImage();
-        super.paintComponent(g);
         if (background != null) {
             g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         }
@@ -97,14 +110,14 @@ public class MainLayer extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (getValue(AbstractAction.NAME) == START_TEXT) {
+            if (getValue(AbstractAction.NAME).equals(START_TEXT)) {
                 menu.showGame();
                 game.startGameLoop();
-            } else if (getValue(AbstractAction.NAME) == SCORES_TEXT) {
+            } else if (getValue(AbstractAction.NAME).equals(SCORES_TEXT)) {
                 menu.showDBLayer();
-            } else if (getValue(AbstractAction.NAME) == OPTIONS_TEXT) {
+            } else if (getValue(AbstractAction.NAME).equals(OPTIONS_TEXT)) {
                 menu.showOptionPanel();
-            } else if (getValue(AbstractAction.NAME) == QUIT_TEXT) {
+            } else if (getValue(AbstractAction.NAME).equals(QUIT_TEXT)) {
                 System.exit(0);
             }
         }
