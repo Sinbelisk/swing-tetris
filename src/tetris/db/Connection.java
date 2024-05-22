@@ -8,7 +8,7 @@ public class Connection {
         java.sql.Connection conn = null;
         try {
             // Especifica la ruta completa al archivo de la base de datos
-            String url = "jdbc:sqlite:src/tetris/db/tetrisDB.db";
+            String url = "jdbc:sqlite:tetrisDB.db";
             // Crea una conexión a la base de datos
             conn = DriverManager.getConnection(url);
             System.out.println("Connection is OK!");
