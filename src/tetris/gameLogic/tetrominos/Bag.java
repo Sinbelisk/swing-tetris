@@ -20,7 +20,7 @@ public class Bag {
 
         currentPiece = getNewPiece();
     }
-    public void randomize(){
+    public void randomize() {
         Collections.shuffle(pieces);
     }
 
