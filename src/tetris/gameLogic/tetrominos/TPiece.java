@@ -2,7 +2,7 @@ package tetris.gameLogic.tetrominos;
 
 import tetris.util.MatrixOperations;
 
-public class TPiece extends Tetromino{
+public class TPiece extends Tetromino {
 
     public TPiece() {
         super(0, 0, 3);
