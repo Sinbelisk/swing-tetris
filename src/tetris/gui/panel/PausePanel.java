@@ -1,5 +1,6 @@
 package tetris.gui.panel;
 
+import tetris.Main;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitImage;
@@ -81,6 +82,7 @@ public class PausePanel extends JPanel {
             } else if (getValue(AbstractAction.NAME) == EXIT_TEXT) {
                 menu.showMainLayer();
                 game.stopGameLoop();
+                MainMenu.game = new Game();
             }
         }
     }

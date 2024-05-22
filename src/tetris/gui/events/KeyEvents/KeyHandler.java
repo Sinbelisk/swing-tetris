@@ -32,10 +32,6 @@ public class KeyHandler extends KeyAdapter {
             case KeyEvent.VK_R:
                 pieceController.rotate();
                 break;
-            case KeyEvent.VK_ESCAPE:
-                if(!game.isPaused()){
-                    game.pauseGameLoop();
-                } else game.resumeGameLoop();
         }
     }
 }

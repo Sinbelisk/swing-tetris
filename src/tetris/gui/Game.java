@@ -102,4 +102,8 @@ public class Game extends JPanel implements Runnable, IUpdatable {
         Graphics2D g2d = (Graphics2D) g;
         gameManager.draw(g2d);
     }
+
+    public GameManager getGameManager() {
+        return this.gameManager;
+    }
 }

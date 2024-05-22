@@ -90,4 +90,7 @@ public class TetrisGrid {
         return false;
     }
 
+    public void reInit() {
+        initBoard();
+    }
 }
