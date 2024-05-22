@@ -54,6 +54,8 @@ public class GameManager implements IUpdatable, IDrawable, PieceSubject {
     public void update() {
         pieceController.update();
         scoreManager.update();
+        game.menu.gamePanel.setScore(scoreManager.getCurrentScore());
+
 
         if (pieceController.isPiecePlaced()) {
             pieceController.setPiecePlaced(false);

@@ -1,6 +1,5 @@
 package tetris.gui.panel;
 
-import tetris.Main;
 import tetris.gui.Game;
 import tetris.gui.MainMenu;
 import tetris.gui.loadResources.InitImage;

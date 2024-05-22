@@ -16,6 +16,7 @@ public class GamePanel extends JPanel {
     public static final String PAUSE_TEXT = "Pause";
     private JLabel tittle;
     private JButton pause;
+    private JLabel scoreLabel;
     public GamePanel(MainMenu menu, Game game) {
         this.menu = menu;
         this.game = game;
@@ -44,10 +45,17 @@ public class GamePanel extends JPanel {
         Dimension buttonSize = new Dimension(150, 50);
         pause.setPreferredSize(buttonSize);
 
+        scoreLabel = new JLabel();
+        scoreLabel.setForeground(Color.WHITE);
+        String score = String.valueOf(game.getGameManager().scoreManager.getCurrentScore());
+        scoreLabel.setText(score);
+
+
         infoPanel.add(pause);
         infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
+
 
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -55,16 +63,26 @@ public class GamePanel extends JPanel {
 
         constraints.gridx = 0;
         constraints.gridy = 2;
+        infoPanel.add(scoreLabel, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
         infoPanel.add(nextPieceBox, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         infoPanel.add(pause, constraints);
 
         add(game);
         add(infoPanel);
         setFocusable(false);
         setVisible(true);
+    }
+
+    public void setScore(int score){
+        String value = String.valueOf(score);
+        String labelText = "Current score: " + value;
+        scoreLabel.setText(labelText);
     }
 
     @Override

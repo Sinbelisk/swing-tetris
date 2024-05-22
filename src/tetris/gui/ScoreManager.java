@@ -25,7 +25,7 @@ public class ScoreManager implements IUpdatable {
             System.out.println("Current score: "  + getCurrentScore());
         }
     }
-    private int getCurrentScore(){
+    public int getCurrentScore(){
         return score.getScore();
     }
 }
