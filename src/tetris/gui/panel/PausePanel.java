@@ -81,6 +81,7 @@ public class PausePanel extends JPanel {
                 menu.showGame();
             } else if (getValue(AbstractAction.NAME) == EXIT_TEXT) {
                 menu.showMainLayer();
+                menu.reset();
                 game.stopGameLoop();
             }
         }
