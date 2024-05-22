@@ -50,12 +50,10 @@ public class GamePanel extends JPanel {
         String score = String.valueOf(game.getGameManager().scoreManager.getCurrentScore());
         scoreLabel.setText(score);
 
-
         infoPanel.add(pause);
         infoPanel.add(nextPieceBox);
 
         GridBagConstraints constraints = new GridBagConstraints();
-
 
         constraints.gridx = 0;
         constraints.gridy = 1;
